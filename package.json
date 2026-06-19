@@ -1,0 +1,43 @@
+{
+  "name": "ta-nuxt-kumpulin",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev -p 3004",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@lucide/vue": "^1.21.0",
+    "@tiptap/extension-text-align": "^3.27.0",
+    "@tiptap/pm": "^3.27.0",
+    "@tiptap/starter-kit": "^3.27.0",
+    "@tiptap/vue-3": "^3.27.0",
+    "@vueuse/core": "^14.3.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-vue": "^8.6.0",
+    "lucide-vue-next": "^1.0.0",
+    "motion": "^12.40.0",
+    "nuxt": "^4.4.8",
+    "reka-ui": "^2.9.10",
+    "shadcn-nuxt": "^2.7.4",
+    "tailwind-merge": "^3.6.0",
+    "vue": "^3.5.35",
+    "vue-router": "^5.1.0",
+    "vue-sonner": "^2.0.9"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.16.0",
+    "@nuxt/image": "^2.0.0",
+    "@tailwindcss/vite": "^4.3.1",
+    "@types/node": "^25.9.3",
+    "@vueuse/nuxt": "^14.3.0",
+    "tailwindcss": "^4.3.1",
+    "tw-animate-css": "^1.4.0"
+  }
+}

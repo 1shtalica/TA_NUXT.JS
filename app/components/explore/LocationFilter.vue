@@ -1,0 +1,134 @@
+<script setup lang="ts">
+import { Check, ChevronsUpDown, MapPin } from "lucide-vue-next";
+import { cn } from "~/lib/utils";
+import { INDONESIA_REGIONS } from "~/constants/regions";
+
+const Locations = [
+  { value: "semua_lokasi", label: "Semua Lokasi" },
+  { value: "online", label: "Online" },
+  ...INDONESIA_REGIONS.map((prov) => ({
+    value: prov.name,
+    label: prov.name,
+  })),
+];
+
+const open = ref(false);
+const route = useRoute();
+const router = useRouter();
+
+const rawCurrentLocation = computed(() => {
+  return (
+    (route.query.province as string) ||
+    (route.query.location as string) ||
+    "semua_lokasi"
+  );
+});
+
+const currentLocation = computed(() => {
+  const matched = INDONESIA_REGIONS.find(
+    (p) =>
+      p.id === rawCurrentLocation.value || p.name === rawCurrentLocation.value,
+  );
+  return matched?.name ?? rawCurrentLocation.value;
+});
+
+const currentLabel = computed(() => {
+  return (
+    Locations.find((loc) => loc.value === currentLocation.value)?.label ||
+    "Semua"
+  );
+});
+
+const onSelectLocation = (currentValue: string) => {
+  const query = { ...route.query };
+
+  delete query.location;
+
+  if (
+    currentValue === "semua_lokasi" ||
+    currentValue === currentLocation.value
+  ) {
+    delete query.province;
+  } else if (currentValue === "online") {
+    delete query.province;
+    query.location = currentValue;
+  } else {
+    query.province = currentValue;
+  }
+
+  delete query.offset;
+  delete query.page;
+
+  router.push({ query });
+  open.value = false;
+};
+</script>
+
+<template>
+  <Popover v-model:open="open">
+    <PopoverTrigger as-child>
+      <Button
+        variant="ghost"
+        role="combobox"
+        :aria-expanded="open"
+        class="w-full justify-between h-auto py-2.5 lg:py-3 px-3 lg:px-5 bg-transparent hover:bg-slate-50 rounded-xl lg:rounded-full border-0 shadow-none transition-colors min-w-0"
+      >
+        <div class="flex items-center gap-3 w-full min-w-0">
+          <div
+            class="hidden sm:flex h-10 w-10 rounded-full bg-primary/10 items-center justify-center shrink-0"
+          >
+            <MapPin class="h-4 w-4 text-primary" />
+          </div>
+          <div class="flex flex-col items-start min-w-0 flex-1 text-left">
+            <span class="text-xs text-slate-400 font-medium shrink-0"
+              >Lokasi</span
+            >
+            <TooltipProvider>
+              <Tooltip :delayDuration="300">
+                <TooltipTrigger as-child>
+                  <span
+                    class="text-sm font-semibold text-slate-900 truncate w-full mt-0.5 cursor-pointer"
+                  >
+                    {{ currentLabel }}
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" align="start">
+                  {{ currentLabel }}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        </div>
+        <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 text-slate-300" />
+      </Button>
+    </PopoverTrigger>
+    <PopoverContent class="w-70 p-0" align="start">
+      <Command>
+        <CommandInput placeholder="Cari Lokasi..." />
+        <CommandList>
+          <CommandEmpty>Lokasi tidak ditemukan.</CommandEmpty>
+          <CommandGroup>
+            <CommandItem
+              v-for="location in Locations"
+              :key="location.value"
+              :value="location.value"
+              @select="onSelectLocation(location.value)"
+            >
+              <Check
+                :class="
+                  cn(
+                    'mr-2 h-4 w-4',
+                    currentLocation === location.value
+                      ? 'opacity-100'
+                      : 'opacity-0',
+                  )
+                "
+              />
+              {{ location.label }}
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </Command>
+    </PopoverContent>
+  </Popover>
+</template>
