@@ -64,11 +64,11 @@ import { ArrowRight, Sparkles } from "lucide-vue-next";
               Mulai sebagai organizer
             </div>
             <div class="space-y-2">
-              <div
+              <h2
                 class="text-2xl font-bold leading-tight text-slate-950 md:text-3xl"
               >
                 Punya event yang ingin dipublikasikan?
-              </div>
+              </h2>
               <p class="max-w-xl text-sm leading-relaxed text-slate-600 md:text-base">
                 Buat halaman event, atur tiket, dan kelola peserta dari satu
                 tempat.

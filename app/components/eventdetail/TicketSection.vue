@@ -223,11 +223,11 @@ const getDiffParts = (diff: number) => {
           >
             Registrasi
           </p>
-          <div
+          <h3
             class="text-xl md:text-2xl font-bold text-slate-950 leading-tight"
           >
             Pilih Tiket
-          </div>
+          </h3>
         </div>
 
         <template v-if="currentTime">
@@ -622,7 +622,7 @@ const getDiffParts = (diff: number) => {
               </template>
 
               <div class="flex justify-between items-start mb-1">
-                <div
+                <h4
                   :class="
                     cn(
                       'font-semibold text-sm leading-snug line-clamp-2',
@@ -633,7 +633,7 @@ const getDiffParts = (diff: number) => {
                   "
                 >
                   {{ ticket.name }}
-                </div>
+                </h4>
                 <span
                   v-if="ticket.quota > 0 && ticket.booked >= ticket.quota"
                   class="bg-danger text-white text-[10px] px-2 py-0.5 rounded-full font-semibold ml-2 shrink-0"

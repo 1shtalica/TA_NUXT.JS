@@ -45,7 +45,7 @@ watch(
 <template>
   <section class="w-full pt-28 md:pt-36 pb-4 relative z-10">
     <div class="w-full max-w-3xl mx-auto space-y-4 md:space-y-5 text-center">
-      <div
+      <h1
         class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight"
       >
         Eksplorasi
@@ -62,7 +62,7 @@ watch(
             />
           </svg>
         </span>
-      </div>
+      </h1>
       <p
         class="text-slate-500 text-sm md:text-base max-w-xl mx-auto font-medium"
       >

@@ -110,8 +110,13 @@ onUnmounted(() => {
                   <div
                     class="relative w-full h-54 sm:h-76 md:h-96 lg:h-108 xl:h-120 max-h-120"
                   >
-                    <img
+                    <NuxtImg
                       :src="src"
+                      :alt="`${event.title} - Poster ${index + 1}`"
+                      format="webp"
+                      quality="100"
+                      :preload="index === 0"
+                      :loading="index === 0 ? 'eager' : 'lazy'"
                       class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>

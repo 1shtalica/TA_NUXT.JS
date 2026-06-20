@@ -195,7 +195,7 @@ onUnmounted(() => {
             >
           </div>
 
-          <div
+          <h1
             class="text-[2rem] sm:text-[2.6rem] md:text-[3.4rem] lg:text-[3.8rem] font-extrabold text-slate-900 leading-[1.1] tracking-[-0.02em]"
           >
             Satu tempat<br />semua
@@ -217,9 +217,8 @@ onUnmounted(() => {
                 <span class="text-primary font-black">{{
                   CYCLING_WORDS[wordIndex]
                 }}</span>
-              </span> </span
-            ><br /><span class="text-slate-300">di Indonesia.</span>
-          </div>
+              </span> </span><br /><span class="text-slate-300">di Indonesia.</span>
+          </h1>
 
           <p
             class="text-sm sm:text-base lg:text-lg text-slate-500 leading-relaxed max-w-lg font-medium"
@@ -436,11 +435,11 @@ onUnmounted(() => {
                   >{{ getEventTag(ev).text }}</span
                 >
               </div>
-              <div
+              <h3
                 class="relative text-lg font-extrabold text-slate-900 leading-tight mb-4 line-clamp-2"
               >
                 {{ ev.title }}
-              </div>
+              </h3>
               <div class="relative flex flex-col gap-2 mb-5">
                 <div class="flex items-center gap-2 text-slate-500 text-sm">
                   <MapPin :size="14" class="shrink-0" /><span

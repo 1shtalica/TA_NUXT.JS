@@ -66,12 +66,16 @@ const year = isValidDate
           <ImageOff :size="32" class="mb-2 opacity-50" />
           <span class="text-xs font-medium">Image not available</span>
         </div>
-        <img
-          v-else
-          :src="image"
-          class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          @error="imgError = true"
-        />
+         <NuxtImg
+      :src="image"
+      :alt="`Banner ${title}`"
+      format="webp"
+      quality="100"
+      loading="lazy"
+      sizes="sm:100vw md:50vw lg:33vw"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      @error="imgError = true"
+    />
 
         <div class="absolute top-4 left-4 z-10">
           <Badge
@@ -137,12 +141,12 @@ const year = isValidDate
               class="text-xs font-semibold text-indigo-500 tracking-wide line-clamp-1"
               >{{ category }}</span
             >
-            <div
+            <h3
               class="font-bold text-base leading-snug text-slate-900 line-clamp-2"
               :title="title"
             >
               {{ title }}
-            </div>
+            </h3>
             <div
               class="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5"
             >

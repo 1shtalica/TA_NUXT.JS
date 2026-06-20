@@ -241,9 +241,9 @@ onMounted(async () => {
             <Sparkles :size="13" class="text-primary" />
             {{ categories.length }} kategori tersedia
           </div>
-          <div class="text-xl font-bold text-accent md:text-3xl">
+          <h2 class="text-xl font-bold text-accent md:text-3xl">
             Kategori Populer
-          </div>
+          </h2>
           <p class="mt-1.5 text-sm text-muted md:text-base">
             Pilih jalur tercepat ke event yang sesuai minatmu.
           </p>
@@ -356,7 +356,7 @@ onMounted(async () => {
             </div>
 
             <div>
-              <div
+              <h3
                 :class="
                   cn(
                     'text-base font-bold leading-tight text-accent md:text-lg',
@@ -365,7 +365,7 @@ onMounted(async () => {
                 "
               >
                 {{ category.name }}
-              </div>
+              </h3>
               <p
                 :class="
                   cn(

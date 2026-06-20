@@ -2,6 +2,22 @@
 import { INDONESIA_REGIONS } from "~/constants/regions";
 import { EventService } from "~/services/event-service";
 
+useHead({
+  title: "Cari Event - Kumpulin",
+  meta: [
+    {
+      name: "description",
+      content: "Temukan berbagai acara seru di sekitarmu.",
+    },
+  ],
+  link: [
+    {
+      rel: "canonical",
+      href: "/events",
+    },
+  ],
+});
+
 const route = useRoute();
 
 const query = computed(() =>
@@ -37,6 +53,7 @@ const LIMIT = 12;
 
 const {
   data: initialData,
+  pending,
   error: fetchError,
 } = useAsyncData(
   "explore-events",
@@ -51,6 +68,7 @@ const {
       sort: sortOption.value,
     }),
   {
+    lazy: true,
     watch: [
       query,
       typeFilter,
@@ -118,7 +136,12 @@ const error = computed(() =>
         Hasil pencarian untuk <strong>"{{ query }}"</strong>
       </div>
 
+      <div v-if="pending" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+        <EventCardSkeleton v-for="i in 12" :key="i" />
+      </div>
+
       <InfiniteEventList
+        v-else
         :initial-events="initialEvents"
         :initial-has-more="initialHasMore"
         :initial-next-cursor="initialNextCursor"

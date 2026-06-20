@@ -36,9 +36,9 @@ const {
     >
       <div class="flex flex-col gap-3 mb-8">
         <div class="flex items-center justify-between">
-          <div class="text-xl md:text-3xl font-bold text-accent">
+          <h2 class="text-xl md:text-3xl font-bold text-accent">
             Event Segera Hadir
-          </div>
+          </h2>
           <Button variant="link" as-child class="px-0 md:px-4">
             <NuxtLink to="/events?sort=terbaru" class="flex items-center gap-1">
               Lihat Semua <ArrowRight :size="18" />
