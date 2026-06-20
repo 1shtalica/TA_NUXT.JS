@@ -5,17 +5,6 @@ const props = defineProps<{
   events: any[];
 }>();
 
-const formatEventDate = (isoDate: string): string => {
-  if (!isoDate) return "TBA";
-  const date = new Date(isoDate);
-  const options: Intl.DateTimeFormatOptions = {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-  };
-  return date.toLocaleDateString("id-ID", options);
-};
 </script>
 
 <template>
@@ -47,7 +36,7 @@ const formatEventDate = (isoDate: string): string => {
         :key="event.id ?? event.event_id ?? event.slug"
         :title="event.title"
         :category="event.type || ''"
-        :date="formatEventDate(event.start_date)"
+        :date="event.start_date || 'TBA'"
         :location="event.is_online ? 'Online' : event.address_title || ''"
         :price="event.ticket_price || 0"
         :originalPrice="event.ticket_price || 0"
