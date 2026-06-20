@@ -28,15 +28,16 @@ const props = withDefaults(defineProps<EventCardProps>(), {
 const imgError = ref(false);
 
 const dateObj = new Date(props.date);
-const day = !isNaN(dateObj.getDate())
-  ? dateObj.getDate()
+const isValidDate = !isNaN(dateObj.getTime());
+const day = isValidDate
+  ? dateObj.getUTCDate()
   : props.date.split(" ")[0];
-const month = !isNaN(dateObj.getDate())
-  ? dateObj.toLocaleString("id-ID", { month: "short" })
+const month = isValidDate
+  ? dateObj.toLocaleString("id-ID", { month: "short", timeZone: "UTC" })
   : props.date.split(" ")[1]?.substring(0, 3);
-const year = !isNaN(dateObj.getFullYear())
-  ? dateObj.getFullYear()
-  : props.date.split(" ")[2] || new Date().getFullYear();
+const year = isValidDate
+  ? dateObj.getUTCFullYear()
+  : props.date.split(" ")[2] || new Date().getUTCFullYear();
 </script>
 
 <template>

@@ -12,6 +12,7 @@ const formatEventDate = (isoDate: string): string => {
     day: "numeric",
     month: "short",
     year: "numeric",
+    timeZone: "UTC",
   };
   return date.toLocaleDateString("id-ID", options);
 };
