@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import Autoplay from "embla-carousel-autoplay";
-
 const props = defineProps<{ event: any }>();
-
 const isVisible = ref(true);
 const blurOpacity = ref(1);
 const sectionRef = ref<HTMLElement | null>(null);
@@ -114,9 +112,8 @@ onUnmounted(() => {
                       :src="src"
                       :alt="`${event.title} - Poster ${index + 1}`"
                       format="webp"
-                      quality="100"
-                      :preload="index === 0"
-                      :loading="index === 0 ? 'eager' : 'lazy'"
+                      quality="80"
+                      loading="lazy"
                       class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
