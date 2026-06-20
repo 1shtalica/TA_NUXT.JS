@@ -69,6 +69,7 @@ const year = isValidDate
         <img
           v-else
           :src="image"
+          :alt="`Banner ${title}`"
           class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           @error="imgError = true"
         />

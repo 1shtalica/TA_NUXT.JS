@@ -55,13 +55,7 @@ export default defineNuxtConfig({
     }
   ],
 
-  modules: ['shadcn-nuxt', '@vueuse/nuxt', '@nuxt/image', '@nuxt/eslint'],
-
-  image: {
-    // Matikan pemrosesan gambar lokal saat development agar tidak OOM
-    provider: process.env.NODE_ENV === 'development' ? 'none' : 'ipx',
-    domains: ['images.unsplash.com', 'storage.eliflab.site', 'api.qrserver.com'],
-  },
+  modules: ['shadcn-nuxt', '@vueuse/nuxt', '@nuxt/eslint'],
 
   shadcn: {
     /**

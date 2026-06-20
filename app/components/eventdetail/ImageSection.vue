@@ -112,6 +112,7 @@ onUnmounted(() => {
                   >
                     <img
                       :src="src"
+                      :alt="`${event.title} - Poster ${index + 1}`"
                       class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
