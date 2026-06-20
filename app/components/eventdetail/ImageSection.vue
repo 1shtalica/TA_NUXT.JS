@@ -53,7 +53,6 @@ onUnmounted(() => {
 
 <template>
   <div ref="sectionRef" class="relative w-full">
-    <!-- Mesh Gradient Background -->
     <div
       v-show="isVisible"
       class="fixed top-0 left-0 w-screen pointer-events-none transition-opacity duration-300 ease-out"
@@ -111,9 +110,8 @@ onUnmounted(() => {
                   <div
                     class="relative w-full h-54 sm:h-76 md:h-96 lg:h-108 xl:h-120 max-h-120"
                   >
-                    <NuxtImg
+                    <img
                       :src="src"
-                      :alt="`${event.title} - Poster ${index + 1}`"
                       class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>

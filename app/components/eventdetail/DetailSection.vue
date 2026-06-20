@@ -101,11 +101,11 @@ const ticketTypeBadge = computed(() => {
 
         <div class="flex items-start gap-3 py-3 md:py-4">
           <div class="mt-1 h-9 w-1 bg-primary rounded-full shrink-0"></div>
-          <h1
+          <div
             class="text-3xl md:text-4xl font-bold text-slate-950 leading-[1.12] tracking-normal"
           >
             {{ event.title }}
-          </h1>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
@@ -279,11 +279,11 @@ const ticketTypeBadge = computed(() => {
         <div class="pt-2 md:pt-3">
           <div class="flex items-center gap-2 mb-4">
             <div class="h-7 w-1 bg-primary rounded-full"></div>
-            <h4
+            <div
               class="text-xl md:text-2xl font-bold text-slate-950 leading-tight"
             >
               Tentang Event
-            </h4>
+            </div>
           </div>
           <TipTapViewer :content="event.description?.content || ''" />
         </div>
@@ -294,11 +294,11 @@ const ticketTypeBadge = computed(() => {
         >
           <div class="flex items-center gap-2 mb-4">
             <div class="h-7 w-1 bg-primary rounded-full"></div>
-            <h4
+            <div
               class="text-xl md:text-2xl font-bold text-slate-950 leading-tight"
             >
               Rundown Acara
-            </h4>
+            </div>
           </div>
 
           <div class="flex flex-col gap-4">
@@ -321,11 +321,11 @@ const ticketTypeBadge = computed(() => {
               <div
                 :class="`flex flex-col w-full ${item.location || item.description ? 'gap-2' : 'justify-center'}`"
               >
-                <h5
+                <div
                   class="font-semibold text-slate-950 text-base md:text-lg leading-tight group-hover:text-primary transition-colors"
                 >
                   {{ item.title }}
-                </h5>
+                </div>
 
                 <div
                   v-if="item.location"

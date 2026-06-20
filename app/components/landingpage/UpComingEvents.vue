@@ -10,7 +10,6 @@ const {
 
 <template>
   <section class="relative overflow-hidden py-12 md:py-16 bg-[#f9fafb]">
-    <!-- Background Decor -->
     <div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
       <div
         class="absolute inset-0"
@@ -35,12 +34,11 @@ const {
     <div
       class="relative z-10 container mx-auto px-4 md:px-8 lg:px-12 w-full max-w-7xl"
     >
-      <!-- HEADER -->
       <div class="flex flex-col gap-3 mb-8">
         <div class="flex items-center justify-between">
-          <h2 class="text-xl md:text-3xl font-bold text-accent">
+          <div class="text-xl md:text-3xl font-bold text-accent">
             Event Segera Hadir
-          </h2>
+          </div>
           <Button variant="link" as-child class="px-0 md:px-4">
             <NuxtLink to="/events?sort=terbaru" class="flex items-center gap-1">
               Lihat Semua <ArrowRight :size="18" />

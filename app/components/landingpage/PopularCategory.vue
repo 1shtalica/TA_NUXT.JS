@@ -208,7 +208,6 @@ onMounted(async () => {
       categoryNames.value = normalized;
     }
   } catch {
-    // fallback to APPROVED_EVENT_CATEGORIES (already set)
   }
 });
 </script>
@@ -242,9 +241,9 @@ onMounted(async () => {
             <Sparkles :size="13" class="text-primary" />
             {{ categories.length }} kategori tersedia
           </div>
-          <h2 class="text-xl font-bold text-accent md:text-3xl">
+          <div class="text-xl font-bold text-accent md:text-3xl">
             Kategori Populer
-          </h2>
+          </div>
           <p class="mt-1.5 text-sm text-muted md:text-base">
             Pilih jalur tercepat ke event yang sesuai minatmu.
           </p>
@@ -279,19 +278,16 @@ onMounted(async () => {
             '--category-bg': category.bg,
           } as any"
         >
-          <!-- Top Accent Bar -->
           <div
             class="absolute inset-x-0 top-0 h-1 opacity-80"
             :style="{ background: category.color }"
           />
 
-          <!-- Circle Decor -->
           <div
             class="absolute -right-8 -top-8 h-20 w-20 rounded-full transition-transform duration-300 group-hover:scale-125 md:h-24 md:w-24"
             :style="{ background: category.bg }"
           />
 
-          <!-- Watermark Icon (large, bottom-right) -->
           <component
             :is="category.icon"
             :class="
@@ -305,7 +301,6 @@ onMounted(async () => {
             :style="{ color: category.color }"
           />
 
-          <!-- SVG Decorative Lines -->
           <svg
             class="absolute inset-0 h-full w-full opacity-70 transition-transform duration-300 group-hover:scale-[1.03]"
             viewBox="0 0 260 180"
@@ -342,7 +337,6 @@ onMounted(async () => {
             </g>
           </svg>
 
-          <!-- Content -->
           <div class="relative flex h-full flex-col justify-between gap-3.5">
             <div class="flex items-start justify-between gap-3">
               <div
@@ -362,7 +356,7 @@ onMounted(async () => {
             </div>
 
             <div>
-              <h3
+              <div
                 :class="
                   cn(
                     'text-base font-bold leading-tight text-accent md:text-lg',
@@ -371,7 +365,7 @@ onMounted(async () => {
                 "
               >
                 {{ category.name }}
-              </h3>
+              </div>
               <p
                 :class="
                   cn(

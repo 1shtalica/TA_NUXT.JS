@@ -19,7 +19,6 @@ import {
 
 const router = useRouter();
 const searchValue = ref("");
-const inputRef = ref<HTMLInputElement | null>(null);
 const heroEvents = ref<any[]>([]);
 
 const CYCLING_WORDS = ["Konser", "Workshop", "Festival", "Seminar", "Pameran"];
@@ -151,7 +150,6 @@ onUnmounted(() => {
 
 <template>
   <section class="relative w-full overflow-hidden bg-[#f9fafb] pt-4">
-    <!-- Dot Pattern Background -->
     <div class="absolute inset-0 z-0 pointer-events-none">
       <div
         class="absolute inset-0"
@@ -175,16 +173,13 @@ onUnmounted(() => {
       </svg>
     </div>
 
-    <!-- Main Split Layout -->
     <div
       class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12 md:py-16 lg:py-20"
     >
       <div
         class="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-16"
       >
-        <!-- LEFT: Editorial Headline -->
         <div class="flex-1 flex flex-col gap-5 lg:gap-7 w-full lg:max-w-[58%]">
-          <!-- Live indicator pill -->
           <div class="inline-flex items-center gap-2 self-start">
             <span class="relative flex h-2 w-2">
               <span
@@ -200,8 +195,7 @@ onUnmounted(() => {
             >
           </div>
 
-          <!-- Headline -->
-          <h1
+          <div
             class="text-[2rem] sm:text-[2.6rem] md:text-[3.4rem] lg:text-[3.8rem] font-extrabold text-slate-900 leading-[1.1] tracking-[-0.02em]"
           >
             Satu tempat<br />semua
@@ -225,9 +219,8 @@ onUnmounted(() => {
                 }}</span>
               </span> </span
             ><br /><span class="text-slate-300">di Indonesia.</span>
-          </h1>
+          </div>
 
-          <!-- Subtitle -->
           <p
             class="text-sm sm:text-base lg:text-lg text-slate-500 leading-relaxed max-w-lg font-medium"
           >
@@ -235,7 +228,6 @@ onUnmounted(() => {
             ikuti, dan beli tiket dalam satu klik.
           </p>
 
-          <!-- Search bar -->
           <div class="flex flex-col gap-2.5 w-full max-w-lg">
             <div
               class="flex items-center h-12 sm:h-13 bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/15 transition-all duration-200"
@@ -246,7 +238,6 @@ onUnmounted(() => {
                 <Search :size="17" />
               </div>
               <Input
-                ref="inputRef"
                 type="text"
                 placeholder="Cari event, konser, workshop..."
                 class="flex-1 h-full border-0 bg-transparent shadow-none focus-visible:ring-0 text-sm text-slate-800 placeholder:text-slate-400 px-0 min-w-0"
@@ -262,7 +253,6 @@ onUnmounted(() => {
               </Button>
             </div>
 
-            <!-- Quick tags -->
             <div class="flex items-center gap-1.5 flex-wrap">
               <span class="text-xs text-slate-400">Coba:</span>
               <button
@@ -282,7 +272,6 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <!-- Stats -->
           <div
             class="grid grid-cols-2 sm:flex sm:flex-row sm:items-center gap-3 sm:gap-5"
           >
@@ -305,7 +294,6 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <!-- Category strip -->
           <div>
             <p
               class="text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2.5"
@@ -340,7 +328,6 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <!-- RIGHT: Live Event Card Stack (desktop only) -->
         <div
           class="hidden lg:flex flex-col items-center flex-1 max-w-[38%] gap-6"
         >
@@ -385,7 +372,6 @@ onUnmounted(() => {
                 transformOrigin: 'top center',
               }"
             >
-              <!-- Card Graphic SVG -->
               <div
                 class="pointer-events-none absolute inset-0 overflow-hidden"
                 :style="{ color: CARD_ACCENTS[i % CARD_ACCENTS.length] }"
@@ -450,11 +436,11 @@ onUnmounted(() => {
                   >{{ getEventTag(ev).text }}</span
                 >
               </div>
-              <h3
+              <div
                 class="relative text-lg font-extrabold text-slate-900 leading-tight mb-4 line-clamp-2"
               >
                 {{ ev.title }}
-              </h3>
+              </div>
               <div class="relative flex flex-col gap-2 mb-5">
                 <div class="flex items-center gap-2 text-slate-500 text-sm">
                   <MapPin :size="14" class="shrink-0" /><span
@@ -540,7 +526,6 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- Mobile Event Strip -->
     <div class="relative z-10 pb-8 lg:hidden">
       <div class="w-full lg:hidden">
         <div class="flex items-center justify-between mb-3 px-4 sm:px-6">

@@ -2,7 +2,6 @@
 import { ArrowRight, CalendarX } from "lucide-vue-next";
 import { cn } from "~/lib/utils";
 
-// Mengambil event acak
 const {
   data: events,
   pending,
@@ -38,9 +37,9 @@ const {
     >
       <div class="flex flex-col gap-2 mb-8 md:mb-12">
         <div class="flex items-center justify-between">
-          <h2 class="text-xl md:text-3xl font-bold text-accent">
+          <div class="text-xl md:text-3xl font-bold text-accent">
             Event Pilihan
-          </h2>
+          </div>
           <Button variant="link" as-child>
             <NuxtLink to="/events?sort=Populer">
               Lihat Semua <ArrowRight :size="18" />

@@ -89,7 +89,6 @@ useIntersectionObserver(
   <div>
     <EventList :events="events" />
 
-    <!-- Sentinel Element -->
     <div ref="sentinelRef" class="h-2" aria-hidden="true" />
 
     <div v-if="isLoading" class="flex justify-center items-center py-10">

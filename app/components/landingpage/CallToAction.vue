@@ -4,7 +4,6 @@ import { ArrowRight, Sparkles } from "lucide-vue-next";
 
 <template>
   <section class="relative overflow-hidden bg-[#f9fafb] py-10 md:py-14">
-    <!-- Dot Pattern Background -->
     <div class="pointer-events-none absolute inset-0" aria-hidden="true">
       <div
         class="absolute inset-0"
@@ -22,7 +21,6 @@ import { ArrowRight, Sparkles } from "lucide-vue-next";
       <div
         class="relative overflow-hidden rounded-2xl border border-primary/15 bg-white p-5 shadow-md shadow-slate-900/5 md:p-7"
       >
-        <!-- SVG Decorative (right side, desktop) -->
         <div
           class="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 text-primary md:block"
         >
@@ -55,11 +53,9 @@ import { ArrowRight, Sparkles } from "lucide-vue-next";
           </svg>
         </div>
 
-        <!-- Content: horizontal layout -->
         <div
           class="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between"
         >
-          <!-- Left: Text -->
           <div class="max-w-2xl space-y-3">
             <div
               class="inline-flex items-center gap-2 rounded-xl bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary"
@@ -68,11 +64,11 @@ import { ArrowRight, Sparkles } from "lucide-vue-next";
               Mulai sebagai organizer
             </div>
             <div class="space-y-2">
-              <h2
+              <div
                 class="text-2xl font-bold leading-tight text-slate-950 md:text-3xl"
               >
                 Punya event yang ingin dipublikasikan?
-              </h2>
+              </div>
               <p class="max-w-xl text-sm leading-relaxed text-slate-600 md:text-base">
                 Buat halaman event, atur tiket, dan kelola peserta dari satu
                 tempat.
@@ -80,13 +76,11 @@ import { ArrowRight, Sparkles } from "lucide-vue-next";
             </div>
           </div>
 
-          <!-- Right: Button -->
           <Button
             as-child
             size="lg"
             class="h-11 self-start rounded-xl px-5 text-sm font-semibold md:self-center"
           >
-            <!-- ⚠️ TESTING APP: link menggunakan "#" agar tidak 404 -->
             <NuxtLink to="#">
               Daftar Sekarang
               <ArrowRight :size="17" />

@@ -2,16 +2,6 @@
 import { INDONESIA_REGIONS } from "~/constants/regions";
 import { EventService } from "~/services/event-service";
 
-useHead({
-  title: "Cari Event - Kumpulin",
-  meta: [
-    {
-      name: "description",
-      content: "Temukan berbagai acara seru di sekitarmu.",
-    },
-  ],
-});
-
 const route = useRoute();
 
 const query = computed(() =>
@@ -44,12 +34,10 @@ const sortOption = computed(() =>
 
 const LIMIT = 12;
 
-// SSR Fetching yang reaktif terhadap perubahan filter
+
 const {
   data: initialData,
-  pending,
   error: fetchError,
-  refresh,
 } = useAsyncData(
   "explore-events",
   () =>
@@ -71,7 +59,6 @@ const {
       priceFilter,
       sortOption,
     ],
-    lazy: true,
   },
 );
 
@@ -89,7 +76,7 @@ const error = computed(() =>
 
 <template>
   <div class="relative min-h-screen flex flex-col overflow-hidden bg-[#f9fafb]">
-    <!-- Background dekoratif -->
+
     <div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
       <div
         class="absolute inset-0"

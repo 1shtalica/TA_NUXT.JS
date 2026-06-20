@@ -7,17 +7,15 @@ import { Copyright } from "lucide-vue-next";
     <div
       class="container mx-auto px-4 md:px-8 lg:px-12 flex flex-col gap-10 w-full max-w-7xl"
     >
-      <!-- TOP: Grid Utama -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
-        <!-- Kolom 1: Brand & Sosial Media (5 kolom) -->
         <div class="md:col-span-5 flex flex-col gap-6">
           <div class="space-y-3">
             <div class="inline-block">
-              <h2
+              <div
                 class="font-bold text-2xl md:text-3xl tracking-tight text-white flex items-center gap-2"
               >
                 <span>🎉</span> kumpul.in
-              </h2>
+              </div>
             </div>
             <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-sm">
               Ciptakan eventmu dan jangkau ribuan peserta dengan mudah. Platform
@@ -25,9 +23,7 @@ import { Copyright } from "lucide-vue-next";
             </p>
           </div>
 
-          <!-- Social Icons -->
           <div class="flex gap-2">
-            <!-- Instagram -->
             <Button
               as-child
               variant="ghost"
@@ -51,7 +47,6 @@ import { Copyright } from "lucide-vue-next";
               </a>
             </Button>
 
-            <!-- X (Twitter) -->
             <Button
               as-child
               variant="ghost"
@@ -71,7 +66,6 @@ import { Copyright } from "lucide-vue-next";
               </a>
             </Button>
 
-            <!-- Facebook -->
             <Button
               as-child
               variant="ghost"
@@ -97,13 +91,11 @@ import { Copyright } from "lucide-vue-next";
           </div>
         </div>
 
-        <!-- Kolom 2: Link Sections (7 kolom, 3 group) -->
         <div
           class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8"
         >
-          <!-- Group 1: Tentang -->
           <div class="flex flex-col gap-4">
-            <h4 class="font-semibold text-white">Tentang</h4>
+            <div class="font-semibold text-white">Tentang</div>
             <div class="flex flex-col gap-2 items-start">
               <Button
                 as-child
@@ -129,9 +121,8 @@ import { Copyright } from "lucide-vue-next";
             </div>
           </div>
 
-          <!-- Group 2: Legal -->
           <div class="flex flex-col gap-4">
-            <h4 class="font-semibold text-white">Legal</h4>
+            <div class="font-semibold text-white">Legal</div>
             <div class="flex flex-col gap-2 items-start">
               <Button
                 as-child
@@ -157,9 +148,8 @@ import { Copyright } from "lucide-vue-next";
             </div>
           </div>
 
-          <!-- Group 3: Hubungi -->
           <div class="flex flex-col gap-4">
-            <h4 class="font-semibold text-white">Hubungi</h4>
+            <div class="font-semibold text-white">Hubungi</div>
             <div class="flex flex-col gap-2 items-start">
               <Button
                 as-child
@@ -180,7 +170,6 @@ import { Copyright } from "lucide-vue-next";
         </div>
       </div>
 
-      <!-- BOTTOM: Copyright -->
       <div class="flex flex-col gap-6">
         <Separator class="bg-slate-800" />
         <div

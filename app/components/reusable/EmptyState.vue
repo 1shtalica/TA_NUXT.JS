@@ -26,9 +26,9 @@ const emit = defineEmits(["actionClick"]);
         </slot>
       </div>
 
-      <h3 class="text-lg font-semibold tracking-tight text-accent mb-2">
+      <div class="text-lg font-semibold tracking-tight text-accent mb-2">
         {{ title }}
-      </h3>
+      </div>
 
       <p class="text-muted-foreground max-w-sm text-sm leading-relaxed mb-6">
         {{ description }}

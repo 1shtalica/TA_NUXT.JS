@@ -1,4 +1,3 @@
-// services/event-service.ts
 import type {
   Event,
   EventListResult,
@@ -43,8 +42,6 @@ const buildEventListSearchParams = (params: GetEventsParams = {}) => {
   return urlParams
 }
 
-// $fetch harus di-pass sebagai parameter karena service ini dipanggil
-// di luar composable context (server-side di pages)
 export const EventService = {
   async getEvents(
     apiFetch: typeof $fetch,
@@ -65,7 +62,6 @@ export const EventService = {
     }
   },
 
-  // Client-side fetch untuk infinite scroll
   async getEventsClient(
     params: GetEventsParams = {},
   ): Promise<EventListResult> {

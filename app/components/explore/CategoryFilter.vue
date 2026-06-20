@@ -1,19 +1,7 @@
 <script setup lang="ts">
 import { Check, ChevronsUpDown, Tag, Loader2 } from "lucide-vue-next";
 import { cn } from "~/lib/utils";
-
-const APPROVED_EVENT_CATEGORIES = [
-  "Teknologi",
-  "Bisnis",
-  "Hiburan",
-  "Edukasi",
-  "Olahraga",
-  "Musik",
-  "Seni",
-  "Kesehatan",
-  "Kuliner",
-  "Komunitas",
-];
+import { normalizeEventCategoryList, APPROVED_EVENT_CATEGORIES } from "~/constants/event-categories";
 
 const open = ref(false);
 const dynamicCategories = ref<string[]>([...APPROVED_EVENT_CATEGORIES]);
@@ -30,9 +18,9 @@ const displayLabel = computed(() => currentCategory.value || "Semua");
 onMounted(async () => {
   loading.value = true;
   try {
-    const response = await $fetch<any>("/api/proxy/events/categories");
+    const response = await $fetch<any>("/api/proxy/categories");
     if (response?.data && response.data.length > 0) {
-      dynamicCategories.value = response.data;
+      dynamicCategories.value = normalizeEventCategoryList(response.data);
     }
   } catch (error) {
     console.error("Gagal load kategori:", error);

@@ -11,11 +11,7 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/api/proxy/**': {
-      proxy: `${process.env.NUXT_PUBLIC_API_BASE_URL}/**`,
-    },
-  },
+
 
   vite: {
     plugins: [
@@ -40,6 +36,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Kumpul.in',
+      htmlAttrs: { lang: 'id' },
       meta: [{ name: 'description', content: 'Kumpulin event management system' }],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

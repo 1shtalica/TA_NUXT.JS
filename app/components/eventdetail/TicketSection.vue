@@ -199,7 +199,6 @@ const handleShare = (platform: string) => {
   }
 };
 
-// Utilities for countdown
 const getDiffParts = (diff: number) => {
   const totalSeconds = Math.max(0, Math.floor(diff / 1000));
   const totalHours = Math.floor(diff / (1000 * 60 * 60));
@@ -224,11 +223,11 @@ const getDiffParts = (diff: number) => {
           >
             Registrasi
           </p>
-          <h3
+          <div
             class="text-xl md:text-2xl font-bold text-slate-950 leading-tight"
           >
             Pilih Tiket
-          </h3>
+          </div>
         </div>
 
         <template v-if="currentTime">
@@ -426,7 +425,6 @@ const getDiffParts = (diff: number) => {
             </div>
 
             <div class="flex-1 p-3.5 flex flex-col justify-between">
-              <!-- Ticket Countdown Badge -->
               <template
                 v-if="
                   currentTime &&
@@ -623,9 +621,8 @@ const getDiffParts = (diff: number) => {
                 </div>
               </template>
 
-              <!-- Header -->
               <div class="flex justify-between items-start mb-1">
-                <h4
+                <div
                   :class="
                     cn(
                       'font-semibold text-sm leading-snug line-clamp-2',
@@ -636,7 +633,7 @@ const getDiffParts = (diff: number) => {
                   "
                 >
                   {{ ticket.name }}
-                </h4>
+                </div>
                 <span
                   v-if="ticket.quota > 0 && ticket.booked >= ticket.quota"
                   class="bg-danger text-white text-[10px] px-2 py-0.5 rounded-full font-semibold ml-2 shrink-0"
@@ -645,14 +642,12 @@ const getDiffParts = (diff: number) => {
                 </span>
               </div>
 
-              <!-- Harga -->
               <p
                 class="font-bold text-base md:text-lg text-primary mb-1 leading-tight"
               >
                 {{ formatRupiah(ticket.price) }}
               </p>
 
-              <!-- Deskripsi -->
               <p
                 v-if="ticket.description"
                 class="text-xs text-slate-600 mb-3 line-clamp-2 leading-relaxed"
@@ -660,7 +655,6 @@ const getDiffParts = (diff: number) => {
                 {{ ticket.description }}
               </p>
 
-              <!-- Progress Bar -->
               <div
                 v-if="ticket.quota > 0"
                 class="w-full flex flex-col gap-1 mt-3"
@@ -709,7 +703,6 @@ const getDiffParts = (diff: number) => {
         </div>
       </div>
 
-      <!-- ZONA BAWAH: SELALU TERLIHAT -->
       <div
         class="shrink-0 p-5 pt-3 flex flex-col gap-3 border-t border-slate-100 bg-white"
       >

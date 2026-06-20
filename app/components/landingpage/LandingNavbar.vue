@@ -48,9 +48,7 @@ const getNavLinkClass = (path: string) => {
     <div
       class="container relative mx-auto px-4 md:px-8 lg:px-12 flex flex-row items-center justify-between w-full max-w-7xl"
     >
-      <!-- LEFT: Burger (mobile) + Logo -->
       <div class="flex items-center gap-2">
-        <!-- Burger — Mobile Only, slide dari kiri -->
         <div class="md:hidden">
           <Sheet v-model:open="isMobileMenuOpen">
             <SheetTrigger as-child>
@@ -132,7 +130,6 @@ const getNavLinkClass = (path: string) => {
           </Sheet>
         </div>
 
-        <!-- Logo — Desktop only -->
         <button
           type="button"
           @click="router.go(0)"
@@ -147,7 +144,6 @@ const getNavLinkClass = (path: string) => {
         </button>
       </div>
 
-      <!-- CENTER: Desktop Nav Links -->
       <div
         class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-2"
       >
@@ -165,7 +161,6 @@ const getNavLinkClass = (path: string) => {
         </Button>
       </div>
 
-      <!-- RIGHT: Auth Buttons -->
       <div class="flex items-center gap-3">
         <Button
           variant="ghost"

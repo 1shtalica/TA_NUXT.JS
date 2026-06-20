@@ -12,18 +12,14 @@ interface EventCardProps {
   originalPrice?: number;
   organizer: string;
   image: string;
-  isHot?: boolean;
   isOnline?: boolean;
-  isRtPintar?: boolean;
   ticketSold?: number;
   maxQuota?: number;
   variant?: "vertical" | "horizontal";
 }
 
 const props = withDefaults(defineProps<EventCardProps>(), {
-  isHot: false,
   isOnline: false,
-  isRtPintar: false,
   ticketSold: 0,
   maxQuota: 100,
   variant: "vertical",
@@ -36,7 +32,7 @@ const day = !isNaN(dateObj.getDate())
   ? dateObj.getDate()
   : props.date.split(" ")[0];
 const month = !isNaN(dateObj.getDate())
-  ? dateObj.toLocaleString("default", { month: "short" })
+  ? dateObj.toLocaleString("id-ID", { month: "short" })
   : props.date.split(" ")[1]?.substring(0, 3);
 const year = !isNaN(dateObj.getFullYear())
   ? dateObj.getFullYear()
@@ -53,7 +49,7 @@ const year = !isNaN(dateObj.getFullYear())
         )
       "
     >
-      <!-- HEADER IMAGE -->
+
       <div
         :class="
           cn(
@@ -69,12 +65,10 @@ const year = !isNaN(dateObj.getFullYear())
           <ImageOff :size="32" class="mb-2 opacity-50" />
           <span class="text-xs font-medium">Image not available</span>
         </div>
-        <NuxtImg
+        <img
           v-else
           :src="image"
-          :alt="title"
           class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="sm:100vw md:50vw lg:33vw"
           @error="imgError = true"
         />
 
@@ -102,7 +96,7 @@ const year = !isNaN(dateObj.getFullYear())
         </button>
       </div>
 
-      <!-- CONTENT -->
+
       <CardContent
         class="flex flex-col px-4 pb-4 pt-2 sm:pt-2 sm:pb-4 sm:px-5 h-full relative overflow-hidden"
       >
@@ -142,12 +136,12 @@ const year = !isNaN(dateObj.getFullYear())
               class="text-xs font-semibold text-indigo-500 tracking-wide line-clamp-1"
               >{{ category }}</span
             >
-            <h3
+            <div
               class="font-bold text-base leading-snug text-slate-900 line-clamp-2"
               :title="title"
             >
               {{ title }}
-            </h3>
+            </div>
             <div
               class="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5"
             >
