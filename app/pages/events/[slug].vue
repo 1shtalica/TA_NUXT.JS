@@ -3,7 +3,6 @@ import { EventService } from "~/services/event-service";
 const route = useRoute();
 const slug = computed(() => route.params.slug as string);
 
-
 const {
   data: event,
   pending,
