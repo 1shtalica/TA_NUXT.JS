@@ -2,6 +2,7 @@
 import { EventService } from "~/services/event-service";
 const route = useRoute();
 const slug = computed(() => route.params.slug as string);
+const { origin } = useRequestURL();
 
 const {
   data: event,
@@ -36,7 +37,7 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: () => `/events/${slug.value}`,
+      href: () => `${origin}/events/${slug.value}`,
     },
   ],
   script: [

@@ -2,6 +2,8 @@
 import { INDONESIA_REGIONS } from "~/constants/regions";
 import { EventService } from "~/services/event-service";
 
+const { origin } = useRequestURL();
+
 useHead({
   title: "Cari Event - Kumpulin",
   meta: [
@@ -13,7 +15,7 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "/events",
+      href: `${origin}/events`,
     },
   ],
 });
