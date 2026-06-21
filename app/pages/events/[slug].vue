@@ -28,7 +28,7 @@ useSeoMeta({
   description: () => event.value ? `Ikuti acara ${event.value.title} sekarang juga di Kumpulin.` : 'Event tidak ditemukan',
   ogTitle: () => event.value?.title || '404 - Kumpulin',
   ogDescription: () => event.value ? `Dapatkan Tiket ${event.value.title} sekarang juga di 🎊Kumpulin!` : '',
-  ogImage: () => event.value?.images?.find((i: any) => i.is_primary)?.image_url || '',
+  ogImage: () => event.value?.images?.find((i: any) => i.is_primary)?.image_url || event.value?.images?.[0]?.image_url || '',
   ogType: 'website',
 });
 
