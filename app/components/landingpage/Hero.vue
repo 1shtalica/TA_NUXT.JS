@@ -339,9 +339,37 @@ onUnmounted(() => {
           </div>
           <div
             v-if="heroEvents.length === 0"
-            class="relative h-85 w-full max-w-85 mx-auto flex items-center justify-center"
+            class="relative h-85 w-full max-w-85 mx-auto"
           >
-            <div class="text-slate-300 text-sm">Memuat event...</div>
+            <div
+              v-for="i in 3"
+              :key="i"
+              class="absolute inset-x-0 top-0 overflow-hidden bg-white rounded-2xl border border-slate-100 shadow-[0_8px_40px_rgba(0,0,0,0.06)] p-5"
+              :style="{
+                transform: `translateY(${(i - 1) * 18}px) scale(${1 - (i - 1) * 0.05})`,
+                opacity: i === 1 ? 1 : i === 2 ? 0.75 : 0.45,
+                zIndex: 30 - (i - 1) * 10,
+              }"
+            >
+              <div class="h-1.5 w-16 rounded-full bg-slate-200 animate-pulse mb-4" />
+              <div class="flex items-center justify-between mb-3">
+                <div class="h-3 w-16 bg-slate-200 rounded-full animate-pulse" />
+                <div class="h-5 w-16 bg-slate-100 rounded-full animate-pulse" />
+              </div>
+              <div class="space-y-2 mb-4">
+                <div class="h-4 w-full bg-slate-200 rounded-full animate-pulse" />
+                <div class="h-4 w-3/4 bg-slate-200 rounded-full animate-pulse" />
+              </div>
+              <div class="space-y-2 mb-5">
+                <div class="h-3 w-2/3 bg-slate-100 rounded-full animate-pulse" />
+                <div class="h-3 w-1/2 bg-slate-100 rounded-full animate-pulse" />
+              </div>
+              <div class="h-1.5 w-full bg-slate-100 rounded-full animate-pulse mb-3" />
+              <div class="flex justify-between pt-2 border-t border-slate-50">
+                <div class="h-3 w-16 bg-slate-100 rounded-full animate-pulse" />
+                <div class="h-3 w-20 bg-slate-100 rounded-full animate-pulse" />
+              </div>
+            </div>
           </div>
           <div v-else class="relative h-85 w-full max-w-85 mx-auto">
             <div

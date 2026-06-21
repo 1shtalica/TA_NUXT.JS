@@ -3,6 +3,10 @@ useSeoMeta({
   title: "Kumpul.in",
   description: "Kumpulin event management system",
 });
+
+useHead({
+  link: [{ rel: "canonical", href: "/" }],
+});
 </script>
 
 <template>

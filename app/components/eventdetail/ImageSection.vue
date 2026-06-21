@@ -104,7 +104,7 @@ onUnmounted(() => {
               :opts="{ loop: true }"
             >
               <CarouselContent>
-                <CarouselItem v-for="(src, index) in images" :key="index">
+              <CarouselItem v-for="(src, index) in images" :key="index">
                   <div
                     class="relative w-full h-54 sm:h-76 md:h-96 lg:h-108 xl:h-120 max-h-120"
                   >
@@ -112,8 +112,9 @@ onUnmounted(() => {
                       :src="src"
                       :alt="`${event.title} - Poster ${index + 1}`"
                       format="webp"
-                      quality="80"
-                      loading="lazy"
+                      quality="100"
+                      :loading="index === 0 ? 'eager' : 'lazy'"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 85vw, 1200px"
                       class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
