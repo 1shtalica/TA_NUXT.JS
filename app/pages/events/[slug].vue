@@ -10,8 +10,7 @@ const {
   error,
 } = useAsyncData(
   `event-${slug.value}`,
-  () => EventService.getEventBySlug($fetch, slug.value),
-  { lazy: true }
+  () => EventService.getEventBySlug($fetch, slug.value)
 );
 
 watch([event, pending, error], ([newEvent, newPending, newError]) => {
