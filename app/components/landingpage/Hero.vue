@@ -20,10 +20,8 @@ import {
 const router = useRouter();
 const searchValue = ref("");
 const heroEvents = ref<any[]>([]);
-
 const CYCLING_WORDS = ["Konser", "Workshop", "Festival", "Seminar", "Pameran"];
 const CARD_ACCENTS = ["#6366f1", "#10b981", "#f59e0b"];
-
 const wordIndex = ref(0);
 const wordVisible = ref(true);
 
