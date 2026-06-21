@@ -26,7 +26,7 @@ watch([event, pending, error], ([newEvent, newPending, newError]) => {
 
 useSeoMeta({
   title: () => event.value ? `${event.value.title} - Kumpulin` : '404 - Kumpulin',
-  description: () => event.value ? `Ikuti acara ${event.value.title} oleh ${event.value.organizer?.name || 'Kumpulin'}.` : 'Event tidak ditemukan',
+  description: () => event.value ? `Ikuti acara ${event.value.title} sekarang juga di Kumpulin.` : 'Event tidak ditemukan',
   ogTitle: () => event.value?.title || '404 - Kumpulin',
   ogDescription: () => event.value ? `Dapatkan Tiket ${event.value.title} sekarang juga di 🎊Kumpulin!` : '',
   ogImage: () => event.value?.images?.find((i: any) => i.is_primary)?.image_url || '',
