@@ -38,11 +38,6 @@ export default defineNuxtConfig({
       title: 'Kumpul.in',
       htmlAttrs: { lang: 'id' },
       meta: [{ name: 'description', content: 'Kumpulin event management system' }],
-      link: [
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap' },
-      ],
     },
   },
 
@@ -55,7 +50,17 @@ export default defineNuxtConfig({
     }
   ],
 
-  modules: ['shadcn-nuxt', '@vueuse/nuxt', '@nuxt/image', '@nuxt/eslint'],
+  modules: ['shadcn-nuxt', '@vueuse/nuxt', '@nuxt/image', '@nuxt/eslint', '@nuxt/fonts' ],
+
+  fonts: {
+  families: [
+    { 
+      name: 'Poppins', 
+      provider: 'google',
+      weights: [300, 400, 500, 600, 700, 800, 900] // ← tambahkan ini
+    }
+  ]
+},
 
   image: {
     // Matikan pemrosesan gambar lokal saat development agar tidak OOM

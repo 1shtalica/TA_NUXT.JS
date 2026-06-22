@@ -201,7 +201,7 @@ onUnmounted(() => {
             Satu tempat<br />semua
             <span class="relative z-10">
               <span
-                class="relative inline-block"
+                class="relative inline-block min-w-[150px] sm:min-w-[200px] md:min-w-[260px] lg:min-w-[290px] text-left"
                 :style="{
                   transition: 'opacity 0.35s ease, transform 0.35s ease',
                   opacity: wordVisible ? 1 : 0,
@@ -569,11 +569,26 @@ onUnmounted(() => {
             >Lihat semua <ChevronRight :size="13"
           /></NuxtLink>
         </div>
-        <div class="relative">
+        <div class="relative min-h-[14rem]">
           <div
             class="flex gap-3 overflow-x-auto scrollbar-hide px-4 sm:px-6 pb-2"
           >
+            <!-- Skeleton Loading Mobile -->
+            <div v-if="heroEvents.length === 0" class="flex gap-3">
+              <div
+                v-for="i in 3"
+                :key="`skel-${i}`"
+                class="shrink-0 w-60 h-[13rem] bg-white rounded-xl border border-slate-100 shadow-sm p-4 animate-pulse flex flex-col"
+              >
+                <div class="h-3 w-16 bg-slate-200 rounded-full mb-3" />
+                <div class="h-5 w-3/4 bg-slate-200 rounded-full mb-4" />
+                <div class="h-3 w-full bg-slate-100 rounded-full mb-2" />
+                <div class="h-3 w-2/3 bg-slate-100 rounded-full mt-auto" />
+              </div>
+            </div>
+
             <NuxtLink
+              v-else
               v-for="(ev, i) in heroEvents"
               :key="ev.slug ?? i"
               :to="`/events/${ev.slug}`"
