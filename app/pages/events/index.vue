@@ -4,18 +4,41 @@ import { EventService } from "~/services/event-service";
 
 const { origin } = useRequestURL();
 
-useHead({
+useSeoMeta({
   title: "Cari Event - Kumpulin",
-  meta: [
+  description: "Temukan berbagai acara seru, konser, workshop, dan seminar di sekitarmu.",
+  ogTitle: "Cari Event - Kumpulin",
+  ogDescription: "Temukan berbagai acara seru, konser, workshop, dan seminar di sekitarmu.",
+  ogUrl: () => `${origin}/events`,
+  ogType: "website",
+  ogImage: [
     {
-      name: "description",
-      content: "Temukan berbagai acara seru di sekitarmu.",
+      url: `${origin}/og_image.png`,
+      width: 1200,
+      height: 630,
+      alt: "Banner Resmi Kumpul.in",
+      type: "image/png",
     },
   ],
+});
+
+useHead({
   link: [
     {
       rel: "canonical",
-      href: `${origin}/events`,
+      href: () => `${origin}/events`,
+    },
+  ],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Cari Event - Kumpulin",
+        description: "Temukan berbagai acara seru di sekitarmu.",
+        url: `${origin}/events`,
+      }),
     },
   ],
 });
@@ -70,7 +93,8 @@ const {
       sort: sortOption.value,
     }),
   {
-    lazy: true,
+    // Bug #5 Fix: Hapus lazy:true agar server menunggu data selesai sebelum kirim HTML
+    // Ini membuat perilaku SSR konsisten dengan Next.js (data ada di HTML pertama)
     watch: [
       query,
       typeFilter,

@@ -8,7 +8,7 @@ import {
   Phone,
   Clock,
   Flame,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 import { cn } from "~/lib/utils";
 import { toast } from "vue-sonner";
 

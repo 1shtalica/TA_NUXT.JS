@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRight, CalendarX } from "lucide-vue-next";
+import { ArrowRight, CalendarX } from "@lucide/vue";
 
 const {
   data: events,
@@ -40,7 +40,7 @@ const {
             Event Segera Hadir
           </h2>
           <Button variant="link" as-child class="px-0 md:px-4">
-            <NuxtLink to="/events?sort=terbaru" class="flex items-center gap-1">
+            <NuxtLink to="/events?sort=newest" class="flex items-center gap-1">
               Lihat Semua <ArrowRight :size="18" />
             </NuxtLink>
           </Button>
@@ -72,7 +72,7 @@ const {
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
       >
         <EventCard
-          v-for="event in events.data"
+          v-for="(event, index) in events.data"
           :key="event.id"
           :title="event.title"
           :category="event.type || ''"
@@ -88,6 +88,7 @@ const {
           :isRtPintar="event.type === 'internal'"
           :ticketSold="event.total_sold || 0"
           :maxQuota="event.max_capacity || 0"
+          :priority="index === 0"
         />
       </div>
     </div>

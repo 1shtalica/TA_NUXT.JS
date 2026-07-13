@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { X, Filter } from "lucide-vue-next";
+import { X, Funnel } from "@lucide/vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -61,7 +61,7 @@ const handleReset = () => {
               v-else
               class="hidden lg:flex items-center justify-center w-14 h-14 rounded-full bg-slate-50 text-slate-400 border border-slate-100 shrink-0"
             >
-              <Filter :size="20" />
+              <Funnel :size="20" />
             </div>
           </div>
         </div>

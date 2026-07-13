@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ArrowRight, CalendarX } from "lucide-vue-next";
+import { ArrowRight, CalendarX } from "@lucide/vue";
 import { cn } from "~/lib/utils";
+
+import type { HomeEventCard } from "~/types/event";
 
 const {
   data: events,
   pending,
   error,
-} = useFetch<any>("/api/proxy/events?random=true&limit=4");
+} = useFetch<{ data: HomeEventCard[] }>("/api/proxy/events/random");
 </script>
 
 <template>
@@ -41,7 +43,7 @@ const {
             Event Pilihan
           </h2>
           <Button variant="link" as-child>
-            <NuxtLink to="/events?sort=Populer">
+            <NuxtLink to="/events">
               Lihat Semua <ArrowRight :size="18" />
             </NuxtLink>
           </Button>
@@ -107,6 +109,7 @@ const {
             :isOnline="event.is_online"
             :ticketSold="event.total_sold"
             :maxQuota="event.max_capacity"
+            :priority="index === 0"
           />
         </div>
       </div>

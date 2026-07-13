@@ -22,12 +22,13 @@ const props = defineProps<ToasterProps>();
       '--normal-border': 'var(--border)',
       '--border-radius': 'var(--radius)',
     }"
+    v-bind="props"
     closeButton
     :gap="10"
     :offset="16"
     :visibleToasts="4"
     :toastOptions="{
-      classNames: {
+      classes: {
         toast:
           'group toast group-[.toaster]:min-h-14 group-[.toaster]:rounded-xl group-[.toaster]:border group-[.toaster]:px-4 group-[.toaster]:py-3 group-[.toaster]:shadow-xl group-[.toaster]:shadow-slate-950/10 group-[.toaster]:backdrop-blur-md group-[.toaster]:tracking-normal',
         default:
@@ -54,7 +55,6 @@ const props = defineProps<ToasterProps>();
           'group-[.toast]:h-8 group-[.toast]:rounded-lg group-[.toast]:bg-white/80 group-[.toast]:px-3 group-[.toast]:text-xs group-[.toast]:font-semibold group-[.toast]:text-slate-600 group-[.toast]:hover:bg-white',
       },
     }"
-    v-bind="props"
   >
     <template #success-icon
       ><CircleCheckIcon class="size-4 text-success"

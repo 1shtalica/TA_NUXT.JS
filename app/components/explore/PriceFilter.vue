@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Check, ChevronsUpDown, Ticket } from "lucide-vue-next";
+import { Check, ChevronsUpDown, Ticket } from "@lucide/vue";
 import { cn } from "~/lib/utils";
 
 const priceOptions = [

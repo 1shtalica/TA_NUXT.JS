@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Menu, Home } from "lucide-vue-next";
+import { Menu, House } from "@lucide/vue";
 import { cn } from "~/lib/utils";
 
 const isScrolled = ref(false);
@@ -102,7 +102,7 @@ const getNavLinkClass = (path: string) => {
                     @click="isMobileMenuOpen = false"
                   >
                     <NuxtLink to="/">
-                      <Home class="h-5 w-5 shrink-0 mr-3" />
+                      <House class="h-5 w-5 shrink-0 mr-3" />
                       <span>Beranda</span>
                     </NuxtLink>
                   </Button>

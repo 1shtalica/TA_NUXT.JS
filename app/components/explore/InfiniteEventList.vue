@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useIntersectionObserver } from "@vueuse/core";
-import { Loader2 } from "lucide-vue-next";
+import { LoaderCircle } from "@lucide/vue";
 
 const props = defineProps<{
   initialEvents: any[];
@@ -92,7 +92,7 @@ useIntersectionObserver(
     <div ref="sentinelRef" class="h-2" aria-hidden="true" />
 
     <div v-if="isLoading" class="flex justify-center items-center py-10">
-      <Loader2 class="animate-spin text-primary h-7 w-7" />
+      <LoaderCircle class="animate-spin text-primary h-7 w-7" />
     </div>
 
     <p v-if="error && !isLoading" class="text-center text-danger text-sm py-6">

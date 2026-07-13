@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Inbox } from "lucide-vue-next";
+import { Inbox } from "@lucide/vue";
 
 const props = defineProps<{
   events: any[];
@@ -32,7 +32,7 @@ const props = defineProps<{
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
     >
       <EventCard
-        v-for="event in events"
+        v-for="(event, index) in events"
         :key="event.id ?? event.event_id ?? event.slug"
         :title="event.title"
         :category="event.type || ''"
@@ -46,6 +46,7 @@ const props = defineProps<{
         :isOnline="event.is_online"
         :ticketSold="event.total_sold || 0"
         :maxQuota="event.max_capacity || 0"
+        :priority="index === 0"
       />
     </div>
   </div>

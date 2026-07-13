@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRight, Inbox } from "lucide-vue-next";
+import { ArrowRight, Inbox } from "@lucide/vue";
 
 interface EmptyStateProps {
   title: string;

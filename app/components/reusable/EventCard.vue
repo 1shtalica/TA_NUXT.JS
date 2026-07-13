@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MapPin, Users, Heart, ImageOff, Ticket } from "lucide-vue-next";
+import { MapPin, Users, Heart, ImageOff, Ticket } from "@lucide/vue";
 import { formatCurrency, cn } from "@/lib/utils";
 
 interface EventCardProps {
@@ -16,6 +16,7 @@ interface EventCardProps {
   ticketSold?: number;
   maxQuota?: number;
   variant?: "vertical" | "horizontal";
+  priority?: boolean;
 }
 
 const props = withDefaults(defineProps<EventCardProps>(), {
@@ -23,6 +24,7 @@ const props = withDefaults(defineProps<EventCardProps>(), {
   ticketSold: 0,
   maxQuota: 100,
   variant: "vertical",
+  priority: false,
 });
 
 const imgError = ref(false);
@@ -66,12 +68,13 @@ const year = isValidDate
           <ImageOff :size="32" class="mb-2 opacity-50" />
           <span class="text-xs font-medium">Image not available</span>
         </div>
-         <NuxtImg
+        <NuxtImg
       :src="image"
       :alt="`Banner ${title}`"
       format="webp"
-      quality="100"
-      loading="lazy"
+      quality="75"
+      :loading="priority ? 'eager' : 'lazy'"
+      :preload="priority ? { fetchPriority: 'high' } : false"
       sizes="sm:100vw md:50vw lg:33vw"
       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       @error="imgError = true"

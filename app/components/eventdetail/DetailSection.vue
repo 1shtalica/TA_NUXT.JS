@@ -8,10 +8,12 @@ import {
   Users,
   ExternalLink,
   Plus,
-  CheckCircle2,
-} from "lucide-vue-next";
+  CircleCheck,
+} from "@lucide/vue";
 
 const props = defineProps<{ event: any }>();
+
+const avatarError = ref(false);
 
 const startDate = computed(() =>
   props.event.event_start_date ? new Date(props.event.event_start_date) : null,
@@ -239,8 +241,18 @@ const ticketTypeBadge = computed(() => {
               <div class="shrink-0">
                 <NuxtLink to="#" class="hover:opacity-80 transition-opacity">
                   <Avatar class="h-12 w-12 ring-2 ring-white shadow-sm">
-                    <AvatarImage v-if="event.organizer.profile_image_url" :src="event.organizer.profile_image_url" />
-                    <AvatarFallback>{{
+                    <NuxtImg
+                      v-if="event.organizer.profile_image_url && !avatarError"
+                      :src="event.organizer.profile_image_url"
+                      :alt="event.organizer.name"
+                      format="webp"
+                      quality="75"
+                      loading="lazy"
+                      sizes="48px"
+                      class="w-full h-full object-cover"
+                      @error="avatarError = true"
+                    />
+                    <AvatarFallback v-else>{{
                       event.organizer.name.substring(0, 2).toUpperCase()
                     }}</AvatarFallback>
                   </Avatar>
@@ -251,7 +263,7 @@ const ticketTypeBadge = computed(() => {
                   <p class="font-semibold text-slate-900 leading-tight">
                     {{ event.organizer.name }}
                   </p>
-                  <CheckCircle2
+                  <CircleCheck
                     v-if="event.organizer.verification_status === 'verified'"
                     :size="16"
                     class="text-blue-500 fill-blue-50"
@@ -285,7 +297,17 @@ const ticketTypeBadge = computed(() => {
               Tentang Event
             </h4>
           </div>
-          <TipTapViewer :content="event.description?.content || ''" />
+          <!-- Bug #4 Fix: TipTapViewer menggunakan DOM API, tidak bisa di-render di server.
+               ClientOnly memastikan ia hanya berjalan di browser.
+               Fallback menampilkan teks mentah agar deskripsi tetap ada di HTML SSR untuk SEO. -->
+          <ClientOnly>
+            <LazyTipTapViewer :content="event.description?.content || ''" />
+            <template #fallback>
+              <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                {{ event.description?.content ? 'Memuat deskripsi...' : 'Belum ada deskripsi.' }}
+              </p>
+            </template>
+          </ClientOnly>
         </div>
 
         <div

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Copyright } from "lucide-vue-next";
+import { Copyright } from "@lucide/vue";
 </script>
 
 <template>

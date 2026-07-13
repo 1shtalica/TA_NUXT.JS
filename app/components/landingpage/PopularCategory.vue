@@ -23,11 +23,10 @@ import {
   Presentation,
   Images,
   Tag,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 import { cn } from "~/lib/utils";
 import {
   APPROVED_EVENT_CATEGORIES,
-  normalizeEventCategoryList,
 } from "~/constants/event-categories";
 
 const CATEGORY_PRESENTATION: Record<
@@ -189,6 +188,8 @@ const getVisibleCategories = (categories: string[]) => {
   return [...primaryCategories, otherCategory];
 };
 
+import { EventService } from '~/services/event-service';
+
 const buildCategoryCards = (categories: string[]) =>
   getVisibleCategories(categories).map((name) => ({
     value: name,
@@ -197,19 +198,19 @@ const buildCategoryCards = (categories: string[]) =>
     ...getCategoryPresentation(name),
   }));
 
-const categoryNames = ref<string[]>([...APPROVED_EVENT_CATEGORIES]);
-const categories = computed(() => buildCategoryCards(categoryNames.value));
+// Bug #2 Fix: Pindahkan fetch ke useAsyncData agar dieksekusi di server saat SSR
+const { data: categoriesData, pending, error } = await useAsyncData<string[]>(
+  'event-categories',
+  () => EventService.getEventCategories($fetch),
+  { default: () => [...APPROVED_EVENT_CATEGORIES] }
+);
 
-onMounted(async () => {
-  try {
-    const json = await $fetch<{ data: unknown }>("/api/proxy/categories");
-    const normalized = normalizeEventCategoryList(json.data);
-    if (normalized.length > 0) {
-      categoryNames.value = normalized;
-    }
-  } catch {
-  }
-});
+const categoryNames = computed<string[]>(() =>
+  categoriesData.value && categoriesData.value.length > 0
+    ? categoriesData.value
+    : [...APPROVED_EVENT_CATEGORIES]
+);
+const categories = computed(() => buildCategoryCards(categoryNames.value));
 </script>
 
 <template>

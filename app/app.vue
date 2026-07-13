@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { Toaster } from "vue-sonner";
+const Toaster = defineAsyncComponent(() =>
+  import("vue-sonner").then((m) => m.Toaster),
+);
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowUp } from "lucide-vue-next";
+import { ArrowUp } from "@lucide/vue";
 import { useWindowScroll } from "@vueuse/core";
 import { computed } from "vue";
 import { cn } from "@/lib/utils";

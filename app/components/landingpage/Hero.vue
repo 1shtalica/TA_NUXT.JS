@@ -15,11 +15,10 @@ import {
   CalendarDays,
   Star,
   ChevronRight,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 
 const router = useRouter();
 const searchValue = ref("");
-const heroEvents = ref<any[]>([]);
 
 const CYCLING_WORDS = ["Konser", "Workshop", "Festival", "Seminar", "Pameran"];
 const CARD_ACCENTS = ["#6366f1", "#10b981", "#f59e0b"];
@@ -27,9 +26,21 @@ const CARD_ACCENTS = ["#6366f1", "#10b981", "#f59e0b"];
 const wordIndex = ref(0);
 const wordVisible = ref(true);
 
-let wordInterval: ReturnType<typeof setInterval>;
+import type { HomeEventCard } from '~/types/event';
+import { EventService } from '~/services/event-service';
 
-onMounted(async () => {
+// Bug #1 Fix: Pindahkan fetch ke useAsyncData agar dieksekusi di server saat SSR
+const { data: heroEventsData, pending, error } = await useAsyncData(
+  'hero-events',
+  () => EventService.getEvents($fetch, { limit: 3 })
+);
+const heroEvents = computed<HomeEventCard[]>(() => heroEventsData.value?.data ?? []);
+
+let wordInterval: ReturnType<typeof setInterval>;
+let stackInterval: ReturnType<typeof setInterval>;
+
+// wordInterval: hanya animasi UI, tetap di onMounted (tidak butuh SSR)
+onMounted(() => {
   wordInterval = setInterval(() => {
     wordVisible.value = false;
     setTimeout(() => {
@@ -37,17 +48,11 @@ onMounted(async () => {
       wordVisible.value = true;
     }, 350);
   }, 2400);
-
-  try {
-    const res = await $fetch<any>("/api/proxy/events?limit=3");
-    heroEvents.value = res.data ?? [];
-  } catch (error) {
-    console.error(error);
-  }
 });
 
 onUnmounted(() => {
   clearInterval(wordInterval);
+  clearInterval(stackInterval);
 });
 
 const debouncedSearch = useDebounceFn((term: string) => {
@@ -135,17 +140,22 @@ const STATS = [
 ];
 
 const activeIdx = ref(0);
-let stackInterval: ReturnType<typeof setInterval>;
-onMounted(() => {
-  if (heroEvents.value.length > 0) {
-    stackInterval = setInterval(() => {
-      activeIdx.value = (activeIdx.value + 1) % heroEvents.value.length;
-    }, 3200);
-  }
-});
-onUnmounted(() => {
-  clearInterval(stackInterval);
-});
+
+// Bug #3 Fix: Gunakan watch agar stackInterval aktif setelah data tersedia
+// (heroEvents kini diisi dari server via useAsyncData, bukan onMounted).
+// import.meta.client: setInterval tidak boleh berjalan di server (proses Node
+// tidak pernah "unmount" per-request, timer akan bocor) -- watch ini hanya
+// didaftarkan di browser; immediate:true tetap aman karena heroEvents sudah
+// terisi saat watcher ini didaftarkan (useAsyncData di atas sudah di-await).
+if (import.meta.client) {
+  watch(heroEvents, (newEvents) => {
+    if (newEvents.length > 0 && !stackInterval) {
+      stackInterval = setInterval(() => {
+        activeIdx.value = (activeIdx.value + 1) % newEvents.length;
+      }, 3200);
+    }
+  }, { immediate: true });
+}
 </script>
 
 <template>

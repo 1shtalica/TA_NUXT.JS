@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Check, ChevronsUpDown, Tag, Loader2 } from "lucide-vue-next";
+import { Check, ChevronsUpDown, Tag, LoaderCircle } from "@lucide/vue";
 import { cn } from "~/lib/utils";
 import { normalizeEventCategoryList, APPROVED_EVENT_CATEGORIES } from "~/constants/event-categories";
 
@@ -81,7 +81,7 @@ const onSelectCategory = (currentValue: string) => {
             </TooltipProvider>
           </div>
         </div>
-        <Loader2
+        <LoaderCircle
           v-if="loading"
           class="ml-2 h-4 w-4 shrink-0 animate-spin text-slate-300"
         />

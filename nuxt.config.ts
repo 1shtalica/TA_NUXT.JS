@@ -25,7 +25,6 @@ export default defineNuxtConfig({
         'class-variance-authority',
         'clsx',
         'date-fns',
-        'lucide-vue-next',
         'reka-ui',
         'tailwind-merge',
         'vue-sonner',
@@ -57,29 +56,19 @@ export default defineNuxtConfig({
     { 
       name: 'Poppins', 
       provider: 'google',
-      weights: [300, 400, 500, 600, 700, 800, 900] // ← tambahkan ini
+      weights: [300, 400, 500, 600, 700, 800, 900]
     }
   ]
 },
 
   image: {
-    // Matikan pemrosesan gambar lokal saat development agar tidak OOM
     provider: process.env.NODE_ENV === 'development' ? 'none' : 'ipx',
     domains: ['images.unsplash.com', 'storage.eliflab.site', 'api.qrserver.com'],
+    quality: 75,
   },
 
   shadcn: {
-    /**
-     * Prefix for all the imported component.
-     * @default "Ui"
-     */
     prefix: '',
-    /**
-     * Directory that the component lives in.
-     * Will respect the Nuxt aliases.
-     * @link https://nuxt.com/docs/api/nuxt-config#alias
-     * @default "@/components/ui"
-     */
     componentDir: '@/components/ui'
   },
 

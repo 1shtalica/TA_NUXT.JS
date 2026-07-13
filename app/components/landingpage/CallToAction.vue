@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRight, Sparkles } from "lucide-vue-next";
+import { ArrowRight, Sparkles } from "@lucide/vue";
 </script>
 
 <template>
