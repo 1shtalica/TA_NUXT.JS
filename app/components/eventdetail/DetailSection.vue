@@ -297,9 +297,6 @@ const ticketTypeBadge = computed(() => {
               Tentang Event
             </h4>
           </div>
-          <!-- Bug #4 Fix: TipTapViewer menggunakan DOM API, tidak bisa di-render di server.
-               ClientOnly memastikan ia hanya berjalan di browser.
-               Fallback menampilkan teks mentah agar deskripsi tetap ada di HTML SSR untuk SEO. -->
           <ClientOnly>
             <LazyTipTapViewer :content="event.description?.content || ''" />
             <template #fallback>

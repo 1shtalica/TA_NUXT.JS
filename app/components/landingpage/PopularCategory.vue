@@ -198,7 +198,6 @@ const buildCategoryCards = (categories: string[]) =>
     ...getCategoryPresentation(name),
   }));
 
-// Bug #2 Fix: Pindahkan fetch ke useAsyncData agar dieksekusi di server saat SSR
 const { data: categoriesData, pending, error } = await useAsyncData<string[]>(
   'event-categories',
   () => EventService.getEventCategories($fetch),

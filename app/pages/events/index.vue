@@ -93,8 +93,6 @@ const {
       sort: sortOption.value,
     }),
   {
-    // Bug #5 Fix: Hapus lazy:true agar server menunggu data selesai sebelum kirim HTML
-    // Ini membuat perilaku SSR konsisten dengan Next.js (data ada di HTML pertama)
     watch: [
       query,
       typeFilter,

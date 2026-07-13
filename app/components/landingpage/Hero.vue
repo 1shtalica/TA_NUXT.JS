@@ -29,7 +29,6 @@ const wordVisible = ref(true);
 import type { HomeEventCard } from '~/types/event';
 import { EventService } from '~/services/event-service';
 
-// Bug #1 Fix: Pindahkan fetch ke useAsyncData agar dieksekusi di server saat SSR
 const { data: heroEventsData, pending, error } = await useAsyncData(
   'hero-events',
   () => EventService.getEvents($fetch, { limit: 3 })
@@ -39,7 +38,6 @@ const heroEvents = computed<HomeEventCard[]>(() => heroEventsData.value?.data ??
 let wordInterval: ReturnType<typeof setInterval>;
 let stackInterval: ReturnType<typeof setInterval>;
 
-// wordInterval: hanya animasi UI, tetap di onMounted (tidak butuh SSR)
 onMounted(() => {
   wordInterval = setInterval(() => {
     wordVisible.value = false;
@@ -141,12 +139,6 @@ const STATS = [
 
 const activeIdx = ref(0);
 
-// Bug #3 Fix: Gunakan watch agar stackInterval aktif setelah data tersedia
-// (heroEvents kini diisi dari server via useAsyncData, bukan onMounted).
-// import.meta.client: setInterval tidak boleh berjalan di server (proses Node
-// tidak pernah "unmount" per-request, timer akan bocor) -- watch ini hanya
-// didaftarkan di browser; immediate:true tetap aman karena heroEvents sudah
-// terisi saat watcher ini didaftarkan (useAsyncData di atas sudah di-await).
 if (import.meta.client) {
   watch(heroEvents, (newEvents) => {
     if (newEvents.length > 0 && !stackInterval) {
@@ -583,7 +575,6 @@ if (import.meta.client) {
           <div
             class="flex gap-3 overflow-x-auto scrollbar-hide px-4 sm:px-6 pb-2"
           >
-            <!-- Skeleton Loading Mobile -->
             <div v-if="heroEvents.length === 0" class="flex gap-3">
               <div
                 v-for="i in 3"

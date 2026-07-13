@@ -26,9 +26,6 @@ const normalizeEventPagination = (
   next_cursor: pagination?.next_cursor ?? null,
 })
 
-// SSR (server) memanggil backend langsung, menghindari hop lewat proxy
-// internal Nuxt sendiri saat proses server-ke-server; client tetap lewat
-// /api/proxy agar terhindar dari CORS (browser menegakkan same-origin).
 const resolveApiBase = (): string => {
   if (import.meta.server) {
     const config = useRuntimeConfig()
