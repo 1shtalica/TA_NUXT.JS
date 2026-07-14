@@ -46,7 +46,7 @@ onUnmounted(() => {
     v-bind="forwarded"
     :id="id"
     ref="itemRef"
-    :class="cn('relative flex cursor-default select-none items-center rounded-xl px-2 py-1.5 text-sm outline-none data-[highlighted]:bg-primary/10 data-[highlighted]:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50 transition-colors', props.class)"
+    :class="cn('relative flex cursor-default select-none items-center rounded-xl px-3 py-2 text-sm text-slate-700 outline-none data-[highlighted]:bg-primary/10 data-[highlighted]:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50 transition-colors', props.class)"
     @select="() => { filterState.search = '' }"
   >
     <slot />

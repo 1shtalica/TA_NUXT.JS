@@ -2,13 +2,13 @@
 import type { TooltipContentEmits, TooltipContentProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { reactiveOmit } from "@vueuse/core"
-import { TooltipContent, TooltipPortal, useForwardPropsEmits } from "reka-ui"
+import { TooltipArrow, TooltipContent, TooltipPortal, useForwardPropsEmits } from "reka-ui"
 import { cn } from '~/lib/utils'
 
 defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(defineProps<TooltipContentProps & { class?: HTMLAttributes["class"] }>(), {
-  sideOffset: 4,
+  sideOffset: 0,
 })
 
 const emits = defineEmits<TooltipContentEmits>()
@@ -21,9 +21,10 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
   <TooltipPortal>
     <TooltipContent
       v-bind="{ ...forwarded, ...$attrs }"
-      :class="cn('z-50 overflow-hidden rounded-full bg-primary-light px-4 py-2 text-sm font-semibold text-primary shadow-sm animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2', props.class)"
+      :class="cn('z-50 w-fit rounded-full bg-primary-light px-3 py-1.5 text-xs font-semibold text-primary text-balance animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2', props.class)"
     >
       <slot />
+      <TooltipArrow class="bg-primary-light fill-primary-light z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
     </TooltipContent>
   </TooltipPortal>
 </template>
