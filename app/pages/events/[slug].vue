@@ -8,10 +8,18 @@ const {
   data: event,
   pending,
   error,
-} = useAsyncData(
+} = await useAsyncData(
   `event-${slug.value}`,
   () => EventService.getEventBySlug($fetch, slug.value)
 );
+
+if (!event.value || error.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Event tidak ditemukan",
+    fatal: true,
+  });
+}
 
 watch([event, pending, error], ([newEvent, newPending, newError]) => {
   if (!newPending && (!newEvent || newError)) {
@@ -38,17 +46,17 @@ useSeoMeta({
   },
 });
 
-useHead({
+useHead(() => ({
   link: [
     {
       rel: "canonical",
-      href: () => `${origin}/events/${slug.value}`,
+      href: event.value ? `${origin}/events/${slug.value}` : `${origin}/`,
     },
   ],
-  script: [
+  script: event.value ? [
     {
       type: "application/ld+json",
-      innerHTML: () => event.value ? JSON.stringify({
+      innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Event",
         "name": event.value.title,
@@ -61,16 +69,16 @@ useHead({
           "@type": "Organization",
           "name": event.value.organizer?.name || "Kumpulin"
         }
-      }) : '',
+      }),
     }
-  ]
-});
+  ] : [],
+}));
 
 </script>
 
 <template>
-  <div v-if="pending" class="min-h-screen flex flex-col items-center justify-center bg-[#f9fafb]">
-    <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-primary/20 border-r-4 border-primary"></div>
+  <div v-if="pending" class="min-h-screen bg-[#f9fafb]">
+    <EventDetailSkeleton />
   </div>
   <div v-else-if="event">
     <EventDetailHeader />
