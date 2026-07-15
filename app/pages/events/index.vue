@@ -156,10 +156,6 @@ const error = computed(() =>
         <p class="text-red-500 text-sm font-medium">{{ error }}</p>
       </div>
 
-      <div v-if="query" class="mb-6 text-slate-500 text-sm md:text-base">
-        Hasil pencarian untuk <strong>"{{ query }}"</strong>
-      </div>
-
       <div v-if="pending" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         <EventCardSkeleton v-for="i in 12" :key="i" />
       </div>
