@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRight, CalendarX } from "lucide-vue-next";
+import { ArrowRight, CalendarX, Loader2 } from "@lucide/vue";
 import { cn } from "~/lib/utils";
 
 const {
@@ -51,22 +51,8 @@ const {
         </p>
       </div>
 
-      <div
-        v-if="pending"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
-      >
-        <div
-          v-for="index in 4"
-          :key="index"
-          :class="
-            cn(
-              Number(index) > 1 && 'hidden md:block',
-              Number(index) === 4 && 'lg:hidden xl:block',
-            )
-          "
-        >
-          <EventCardSkeleton />
-        </div>
+      <div v-if="pending" class="flex justify-center items-center py-10">
+        <Loader2 class="animate-spin text-primary h-7 w-7" />
       </div>
 
       <EmptyState

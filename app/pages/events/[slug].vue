@@ -7,10 +7,18 @@ const {
   data: event,
   pending,
   error,
-} = useAsyncData(
+} = await useAsyncData(
   `event-${slug.value}`,
   () => EventService.getEventBySlug($fetch, slug.value),
 );
+
+if (!event.value || error.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Event tidak ditemukan",
+    fatal: true,
+  });
+}
 
 watch([event, pending, error], ([newEvent, newPending, newError]) => {
   if (!newPending && (!newEvent || newError)) {

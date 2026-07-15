@@ -23,12 +23,10 @@ import {
   Presentation,
   Images,
   Tag,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 import { cn } from "~/lib/utils";
-import {
-  APPROVED_EVENT_CATEGORIES,
-  normalizeEventCategoryList,
-} from "~/constants/event-categories";
+import { APPROVED_EVENT_CATEGORIES } from "~/constants/event-categories";
+import { EventService } from "~/services/event-service";
 
 const CATEGORY_PRESENTATION: Record<
   string,
@@ -201,13 +199,9 @@ const categoryNames = ref<string[]>([...APPROVED_EVENT_CATEGORIES]);
 const categories = computed(() => buildCategoryCards(categoryNames.value));
 
 onMounted(async () => {
-  try {
-    const json = await $fetch<{ data: unknown }>("/api/proxy/categories");
-    const normalized = normalizeEventCategoryList(json.data);
-    if (normalized.length > 0) {
-      categoryNames.value = normalized;
-    }
-  } catch {
+  const normalized = await EventService.getEventCategories($fetch);
+  if (normalized.length > 0) {
+    categoryNames.value = normalized;
   }
 });
 </script>
@@ -241,9 +235,9 @@ onMounted(async () => {
             <Sparkles :size="13" class="text-primary" />
             {{ categories.length }} kategori tersedia
           </div>
-          <div class="text-xl font-bold text-accent md:text-3xl">
+          <h2 class="text-xl font-bold text-accent md:text-3xl">
             Kategori Populer
-          </div>
+          </h2>
           <p class="mt-1.5 text-sm text-muted md:text-base">
             Pilih jalur tercepat ke event yang sesuai minatmu.
           </p>
@@ -356,7 +350,7 @@ onMounted(async () => {
             </div>
 
             <div>
-              <div
+              <h3
                 :class="
                   cn(
                     'text-base font-bold leading-tight text-accent md:text-lg',
@@ -365,7 +359,7 @@ onMounted(async () => {
                 "
               >
                 {{ category.name }}
-              </div>
+              </h3>
               <p
                 :class="
                   cn(
@@ -386,7 +380,6 @@ onMounted(async () => {
               </span>
               <span
                 class="flex h-7 w-7 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition-all duration-300 group-hover:text-white"
-                :style="{ '--hover-color': category.color }"
                 :class="'group-hover:bg-[var(--category-color)]'"
               >
                 <ChevronRight :size="13" />

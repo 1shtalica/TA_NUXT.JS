@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MapPin, Users, Heart, ImageOff, Ticket } from "lucide-vue-next";
+import { MapPin, Users, Heart, ImageOff, Ticket } from "@lucide/vue";
 import { formatCurrency, cn } from "@/lib/utils";
 
 interface EventCardProps {

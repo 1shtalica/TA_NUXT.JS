@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Check, ChevronsUpDown, ArrowUpDown } from "lucide-vue-next";
+import { Check, ChevronsUpDown, ArrowUpDown } from "@lucide/vue";
 import { cn } from "~/lib/utils";
 
 const sortMethods = [

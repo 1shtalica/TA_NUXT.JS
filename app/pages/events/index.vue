@@ -111,7 +111,7 @@ const error = computed(() =>
         v-if="error"
         class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg"
       >
-        <p class="text-red-500 text-sm font-medium">{{ error }}</p>
+        <p class="text-danger text-sm">{{ error }}</p>
       </div>
 
       <div v-if="query" class="mb-6 text-slate-500 text-sm md:text-base">

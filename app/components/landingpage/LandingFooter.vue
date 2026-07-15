@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Copyright } from "lucide-vue-next";
+import { Copyright } from "@lucide/vue";
 </script>
 
 <template>
@@ -11,11 +11,11 @@ import { Copyright } from "lucide-vue-next";
         <div class="md:col-span-5 flex flex-col gap-6">
           <div class="space-y-3">
             <div class="inline-block">
-              <div
+              <h2
                 class="font-bold text-2xl md:text-3xl tracking-tight text-white flex items-center gap-2"
               >
                 <span>🎉</span> kumpul.in
-              </div>
+              </h2>
             </div>
             <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-sm">
               Ciptakan eventmu dan jangkau ribuan peserta dengan mudah. Platform
@@ -95,7 +95,7 @@ import { Copyright } from "lucide-vue-next";
           class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8"
         >
           <div class="flex flex-col gap-4">
-            <div class="font-semibold text-white">Tentang</div>
+            <h4 class="font-semibold text-white">Tentang</h4>
             <div class="flex flex-col gap-2 items-start">
               <Button
                 as-child
@@ -122,7 +122,7 @@ import { Copyright } from "lucide-vue-next";
           </div>
 
           <div class="flex flex-col gap-4">
-            <div class="font-semibold text-white">Legal</div>
+            <h4 class="font-semibold text-white">Legal</h4>
             <div class="flex flex-col gap-2 items-start">
               <Button
                 as-child
@@ -149,7 +149,7 @@ import { Copyright } from "lucide-vue-next";
           </div>
 
           <div class="flex flex-col gap-4">
-            <div class="font-semibold text-white">Hubungi</div>
+            <h4 class="font-semibold text-white">Hubungi</h4>
             <div class="flex flex-col gap-2 items-start">
               <Button
                 as-child

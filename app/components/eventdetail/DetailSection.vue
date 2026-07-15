@@ -9,7 +9,7 @@ import {
   ExternalLink,
   Plus,
   CheckCircle2,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 
 const props = defineProps<{ event: any }>();
 

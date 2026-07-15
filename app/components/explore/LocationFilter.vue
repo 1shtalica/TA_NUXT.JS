@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Check, ChevronsUpDown, MapPin } from "lucide-vue-next";
+import { Check, ChevronsUpDown, MapPin } from "@lucide/vue";
 import { cn } from "~/lib/utils";
 import { INDONESIA_REGIONS } from "~/constants/regions";
 

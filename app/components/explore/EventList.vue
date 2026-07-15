@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Inbox } from "lucide-vue-next";
+import { Inbox } from "@lucide/vue";
 
 const props = defineProps<{
   events: any[];
@@ -16,9 +16,9 @@ const props = defineProps<{
       <div class="bg-primary/5 p-5 rounded-3xl mb-4 border border-primary/10">
         <Inbox class="w-10 h-10 text-primary" :stroke-width="1.5" />
       </div>
-      <div class="text-xl md:text-2xl font-bold text-foreground">
+      <h3 class="text-xl md:text-2xl font-bold text-foreground">
         Tidak ada event ditemukan
-      </div>
+      </h3>
       <p
         class="text-muted-foreground max-w-sm mt-3 text-sm md:text-base leading-relaxed"
       >

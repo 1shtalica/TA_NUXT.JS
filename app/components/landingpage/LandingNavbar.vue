@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Menu, Home } from "lucide-vue-next";
+import { Menu, Home } from "@lucide/vue";
 import { cn } from "~/lib/utils";
 
 const isScrolled = ref(false);

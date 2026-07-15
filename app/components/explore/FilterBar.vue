@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { X, Filter } from "lucide-vue-next";
+import { X, Filter } from "@lucide/vue";
 
 const route = useRoute();
 const router = useRouter();

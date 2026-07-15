@@ -26,6 +26,14 @@ const normalizeEventPagination = (
   next_cursor: pagination?.next_cursor ?? null,
 })
 
+const resolveApiBase = (): string => {
+  if (import.meta.server) {
+    const config = useRuntimeConfig()
+    return config.public.apiBaseUrl as string
+  }
+  return '/api/proxy'
+}
+
 const buildEventListSearchParams = (params: GetEventsParams = {}) => {
   const {
     limit = 10, cursor, type = '', q = '', search,
@@ -50,7 +58,7 @@ export const EventService = {
     const urlParams = buildEventListSearchParams(params)
     try {
       const json = await apiFetch<{ data: HomeEventCard[]; pagination: EventPagination }>(
-        `/api/proxy/events?${urlParams.toString()}`,
+        `${resolveApiBase()}/events?${urlParams.toString()}`,
       )
       return {
         data: json.data ?? [],
@@ -65,10 +73,8 @@ export const EventService = {
   async getEventsClient(
     params: GetEventsParams = {},
   ): Promise<EventListResult> {
-    const config = useRuntimeConfig()
-    const baseUrl = config.public.apiBaseUrl as string
     const urlParams = buildEventListSearchParams(params)
-    const response = await fetch(`${baseUrl}/events?${urlParams.toString()}`)
+    const response = await fetch(`${resolveApiBase()}/events?${urlParams.toString()}`)
     if (!response.ok) throw new EventListRequestError(`Fetch failed: ${response.status}`, response.status)
     const json = await response.json()
     return {
@@ -79,7 +85,7 @@ export const EventService = {
 
   async getRandomEvents(apiFetch: typeof $fetch): Promise<HomeEventCard[]> {
     try {
-      const json = await apiFetch<{ data: HomeEventCard[] }>('/api/proxy/events/random')
+      const json = await apiFetch<{ data: HomeEventCard[] }>(`${resolveApiBase()}/events/random`)
       return json.data || []
     } catch {
       return []
@@ -88,7 +94,7 @@ export const EventService = {
 
   async getEventBySlug(apiFetch: typeof $fetch, slug: string): Promise<Event | null> {
     try {
-      const json = await apiFetch<{ data: Event }>(`/api/proxy/events/${slug}`)
+      const json = await apiFetch<{ data: Event }>(`${resolveApiBase()}/events/${slug}`)
       return json.data ?? null
     } catch {
       return null
@@ -97,7 +103,7 @@ export const EventService = {
 
   async getEventCategories(apiFetch: typeof $fetch): Promise<string[]> {
     try {
-      const json = await apiFetch<{ data: unknown }>('/api/proxy/categories')
+      const json = await apiFetch<{ data: unknown }>(`${resolveApiBase()}/categories`)
       return normalizeEventCategoryList(json.data)
     } catch {
       return [...APPROVED_EVENT_CATEGORIES]
