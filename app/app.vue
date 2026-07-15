@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const Toaster = defineAsyncComponent(() =>
-  import("vue-sonner").then((m) => m.Toaster),
+  import("~/components/ui/sonner").then((m) => m.Toaster),
 );
 </script>
 

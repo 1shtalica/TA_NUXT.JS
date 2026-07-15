@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { Check, ChevronsUpDown, Tag, LoaderCircle } from "@lucide/vue";
 import { cn } from "~/lib/utils";
-import { normalizeEventCategoryList, APPROVED_EVENT_CATEGORIES } from "~/constants/event-categories";
+import { APPROVED_EVENT_CATEGORIES } from "~/constants/event-categories";
+import { EventService } from "~/services/event-service";
 
 const open = ref(false);
 const dynamicCategories = ref<string[]>([...APPROVED_EVENT_CATEGORIES]);
@@ -17,16 +18,11 @@ const displayLabel = computed(() => currentCategory.value || "Semua");
 
 onMounted(async () => {
   loading.value = true;
-  try {
-    const response = await $fetch<any>("/api/proxy/categories");
-    if (response?.data && response.data.length > 0) {
-      dynamicCategories.value = normalizeEventCategoryList(response.data);
-    }
-  } catch (error) {
-    console.error("Gagal load kategori:", error);
-  } finally {
-    loading.value = false;
+  const normalized = await EventService.getEventCategories($fetch);
+  if (normalized.length > 0) {
+    dynamicCategories.value = normalized;
   }
+  loading.value = false;
 });
 
 const onSelectCategory = (currentValue: string) => {

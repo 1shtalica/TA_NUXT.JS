@@ -73,10 +73,8 @@ export const EventService = {
   async getEventsClient(
     params: GetEventsParams = {},
   ): Promise<EventListResult> {
-    const config = useRuntimeConfig()
-    const baseUrl = config.public.apiBaseUrl as string
     const urlParams = buildEventListSearchParams(params)
-    const response = await fetch(`${baseUrl}/events?${urlParams.toString()}`)
+    const response = await fetch(`${resolveApiBase()}/events?${urlParams.toString()}`)
     if (!response.ok) throw new EventListRequestError(`Fetch failed: ${response.status}`, response.status)
     const json = await response.json()
     return {

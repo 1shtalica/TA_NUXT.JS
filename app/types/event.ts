@@ -66,19 +66,6 @@ export interface Event {
   };
 }
 
-export interface InfiniteEventListProps {
-  initialEvents: HomeEventCard[];
-  initialHasMore: boolean;
-  initialNextCursor: string | null;
-  searchQuery: string;
-  typeFilter: string;
-  categoryFilter: string;
-  provinceFilter: string;
-  priceFilter: string;
-  sortOption: string;
-  limit: number;
-}
-
 export interface EventPagination {
   limit: number;
   has_more: boolean;

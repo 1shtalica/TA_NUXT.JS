@@ -29,7 +29,7 @@ const wordVisible = ref(true);
 import type { HomeEventCard } from '~/types/event';
 import { EventService } from '~/services/event-service';
 
-const { data: heroEventsData, pending, error } = await useAsyncData(
+const { data: heroEventsData } = await useAsyncData(
   'hero-events',
   () => EventService.getEvents($fetch, { limit: 3 })
 );

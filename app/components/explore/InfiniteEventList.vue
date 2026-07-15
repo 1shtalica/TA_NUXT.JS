@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useIntersectionObserver } from "@vueuse/core";
 import { LoaderCircle } from "@lucide/vue";
+import { EventService } from "~/services/event-service";
 
 const props = defineProps<{
   initialEvents: any[];
@@ -49,16 +50,15 @@ const loadMore = async () => {
   error.value = null;
 
   try {
-    const params: Record<string, string> = { cursor: nextCursor.value };
-    if (props.limit) params.limit = String(props.limit);
-    if (props.searchQuery) params.q = props.searchQuery;
-    if (props.categoryFilter) params.category = props.categoryFilter;
-    if (props.provinceFilter) params.province = props.provinceFilter;
-    if (props.priceFilter) params.price = props.priceFilter;
-    if (props.sortOption) params.sort = props.sortOption;
-
-    const query = new URLSearchParams(params).toString();
-    const result = await $fetch<any>(`/api/proxy/events?${query}`);
+    const result = await EventService.getEventsClient({
+      cursor: nextCursor.value,
+      limit: props.limit,
+      q: props.searchQuery,
+      category: props.categoryFilter,
+      province: props.provinceFilter,
+      price: props.priceFilter,
+      sort: props.sortOption,
+    });
 
     events.value = [...events.value, ...result.data];
     hasMore.value = result.pagination.has_more;

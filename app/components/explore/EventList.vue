@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Inbox } from "@lucide/vue";
 
-const props = defineProps<{
+defineProps<{
   events: any[];
 }>();
 

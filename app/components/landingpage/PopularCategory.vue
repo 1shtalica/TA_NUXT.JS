@@ -198,7 +198,7 @@ const buildCategoryCards = (categories: string[]) =>
     ...getCategoryPresentation(name),
   }));
 
-const { data: categoriesData, pending, error } = await useAsyncData<string[]>(
+const { data: categoriesData } = await useAsyncData<string[]>(
   'event-categories',
   () => EventService.getEventCategories($fetch),
   { default: () => [...APPROVED_EVENT_CATEGORIES] }
@@ -275,7 +275,6 @@ const categories = computed(() => buildCategoryCards(categoryNames.value));
           "
           :style="{
             '--category-color': category.color,
-            '--category-bg': category.bg,
           } as any"
         >
           <div
@@ -386,7 +385,6 @@ const categories = computed(() => buildCategoryCards(categoryNames.value));
               </span>
               <span
                 class="flex h-7 w-7 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition-all duration-300 group-hover:text-white"
-                :style="{ '--hover-color': category.color }"
                 :class="'group-hover:bg-[var(--category-color)]'"
               >
                 <ChevronRight :size="13" />

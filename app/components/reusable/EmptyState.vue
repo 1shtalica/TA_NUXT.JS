@@ -8,7 +8,7 @@ interface EmptyStateProps {
   actionHref?: string;
 }
 
-const props = defineProps<EmptyStateProps>();
+defineProps<EmptyStateProps>();
 const emit = defineEmits(["actionClick"]);
 </script>
 
