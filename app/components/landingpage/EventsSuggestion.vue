@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ArrowRight, CalendarX, Loader2 } from "@lucide/vue";
 import { cn } from "~/lib/utils";
+import { EventService } from "~/services/event-service";
 
 const {
   data: events,
   pending,
   error,
-} = useFetch<any>("/api/proxy/events?random=true&limit=4");
+} = useAsyncData("events-suggestion", () => EventService.getRandomEvents($fetch));
 </script>
 
 <template>
@@ -56,7 +57,7 @@ const {
       </div>
 
       <EmptyState
-        v-else-if="error || !events?.data || events.data.length === 0"
+        v-else-if="error || !events || events.length === 0"
         title="Belum Ada Event Pilihan"
         description="Saat ini belum ada event yang tersedia"
       >
@@ -72,7 +73,7 @@ const {
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
       >
         <div
-          v-for="(event, index) in events.data.slice(0, 4)"
+          v-for="(event, index) in events.slice(0, 4)"
           :key="event.id"
           :class="
             cn(

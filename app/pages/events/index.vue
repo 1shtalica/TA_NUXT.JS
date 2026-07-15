@@ -113,11 +113,6 @@ const error = computed(() =>
       >
         <p class="text-danger text-sm">{{ error }}</p>
       </div>
-
-      <div v-if="query" class="mb-6 text-slate-500 text-sm md:text-base">
-        Hasil pencarian untuk <strong>"{{ query }}"</strong>
-      </div>
-
       <InfiniteEventList
         :initial-events="initialEvents"
         :initial-has-more="initialHasMore"

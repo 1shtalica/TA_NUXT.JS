@@ -30,6 +30,9 @@
     "vue-router": "^5.1.0",
     "vue-sonner": "^2.0.9"
   },
+  "overrides": {
+    "h3": "1.15.11"
+  },
   "devDependencies": {
     "@nuxt/eslint": "^1.16.0",
     "@tailwindcss/vite": "4.3.2",

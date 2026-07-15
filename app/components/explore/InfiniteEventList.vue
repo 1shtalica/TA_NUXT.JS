@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useIntersectionObserver } from "@vueuse/core";
 import { Loader2 } from "@lucide/vue";
-import { EventService } from "~/services/event-service";
+import { EventListRequestError, EventService } from "~/services/event-service";
 
 const props = defineProps<{
   initialEvents: any[];
@@ -65,6 +65,27 @@ const loadMore = async () => {
     nextCursor.value = result.pagination.next_cursor;
   } catch (err) {
     console.error("Gagal load more:", err);
+
+    if (err instanceof EventListRequestError && err.status === 400) {
+      try {
+        const result = await EventService.getEventsClient({
+          limit: props.limit,
+          q: props.searchQuery,
+          category: props.categoryFilter,
+          province: props.provinceFilter,
+          price: props.priceFilter,
+          sort: props.sortOption,
+        });
+
+        events.value = result.data;
+        hasMore.value = result.pagination.has_more;
+        nextCursor.value = result.pagination.next_cursor;
+        return;
+      } catch (resetErr) {
+        console.error("Gagal reload halaman pertama:", resetErr);
+      }
+    }
+
     error.value = "Gagal memuat event berikutnya. Silakan coba lagi.";
   } finally {
     isLoading.value = false;
