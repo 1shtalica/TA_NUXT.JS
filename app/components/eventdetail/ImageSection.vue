@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { ImageOff } from "@lucide/vue";
 import Autoplay from "embla-carousel-autoplay";
 const props = defineProps<{ event: any }>();
 const isVisible = ref(true);
 const blurOpacity = ref(1);
 const sectionRef = ref<HTMLElement | null>(null);
+const failedIndexes = reactive<Set<number>>(new Set());
 
 const images = computed(() => {
   const allImages = props.event.images ?? [];
@@ -108,7 +110,15 @@ onUnmounted(() => {
                   <div
                     class="relative w-full h-54 sm:h-76 md:h-96 lg:h-108 xl:h-120 max-h-120"
                   >
+                    <div
+                      v-if="failedIndexes.has(index)"
+                      class="w-full h-full flex flex-col items-center justify-center bg-slate-100 text-slate-400"
+                    >
+                      <ImageOff :size="32" class="mb-2 opacity-50" />
+                      <span class="text-xs font-medium">Image not available</span>
+                    </div>
                     <NuxtImg
+                      v-else
                       :src="src"
                       :alt="`${event.title} - Poster ${index + 1}`"
                       format="webp"
@@ -117,6 +127,7 @@ onUnmounted(() => {
                       :preload="index === 0 ? { fetchPriority: 'high' } : false"
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 85vw, 1200px"
                       class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                      @error="failedIndexes.add(index)"
                     />
                   </div>
                 </CarouselItem>
