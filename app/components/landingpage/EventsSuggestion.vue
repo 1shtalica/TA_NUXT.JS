@@ -42,7 +42,7 @@ const {
             Event Pilihan
           </h2>
           <Button variant="link" as-child>
-            <NuxtLink to="/events?sort=Populer">
+            <NuxtLink to="/events">
               Lihat Semua <ArrowRight :size="18" />
             </NuxtLink>
           </Button>

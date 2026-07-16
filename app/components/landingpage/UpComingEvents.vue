@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ArrowRight, CalendarX, Loader2 } from "@lucide/vue";
+import { EventService } from "~/services/event-service";
 
 const {
   data: events,
   pending,
   error,
-} = useFetch<any>("/api/proxy/events?limit=8");
+} = await useAsyncData("upcoming-events", () =>
+  EventService.getEvents($fetch, { limit: 8 }),
+);
 </script>
 
 <template>
@@ -40,7 +43,7 @@ const {
             Event Segera Hadir
           </h2>
           <Button variant="link" as-child class="px-0 md:px-4">
-            <NuxtLink to="/events?sort=terbaru" class="flex items-center gap-1">
+            <NuxtLink to="/events?sort=newest" class="flex items-center gap-1">
               Lihat Semua <ArrowRight :size="18" />
             </NuxtLink>
           </Button>
