@@ -2,9 +2,9 @@
 import type { ToasterProps } from "vue-sonner";
 import {
   CircleCheckIcon,
+  CircleXIcon,
   InfoIcon,
   Loader2Icon,
-  OctagonXIcon,
   TriangleAlertIcon,
   XIcon,
 } from "@lucide/vue";
@@ -26,6 +26,7 @@ const props = defineProps<ToasterProps>();
     closeButton
     :gap="10"
     :offset="16"
+    :mobileOffset="12"
     :visibleToasts="4"
     :toastOptions="{
       classes: {
@@ -63,7 +64,7 @@ const props = defineProps<ToasterProps>();
     <template #warning-icon
       ><TriangleAlertIcon class="size-4 text-warning"
     /></template>
-    <template #error-icon><OctagonXIcon class="size-4 text-danger" /></template>
+    <template #error-icon><CircleXIcon class="size-4 text-danger" /></template>
     <template #loading-icon
       ><div>
         <Loader2Icon class="size-4 animate-spin text-muted-foreground" /></div
