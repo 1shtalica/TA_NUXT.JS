@@ -34,9 +34,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Kumpul.in',
       htmlAttrs: { lang: 'id' },
-      meta: [{ name: 'description', content: 'Kumpulin event management system' }],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
@@ -57,17 +55,7 @@ export default defineNuxtConfig({
   modules: ['shadcn-nuxt', '@vueuse/nuxt', '@nuxt/eslint'],
 
   shadcn: {
-    /**
-     * Prefix for all the imported component.
-     * @default "Ui"
-     */
     prefix: '',
-    /**
-     * Directory that the component lives in.
-     * Will respect the Nuxt aliases.
-     * @link https://nuxt.com/docs/api/nuxt-config#alias
-     * @default "@/components/ui"
-     */
     componentDir: '@/components/ui'
   },
 

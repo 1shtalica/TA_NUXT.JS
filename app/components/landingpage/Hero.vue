@@ -193,13 +193,13 @@ onUnmounted(() => {
             >
           </div>
 
-          <div
+          <h1
             class="text-[2rem] sm:text-[2.6rem] md:text-[3.4rem] lg:text-[3.8rem] font-extrabold text-slate-900 leading-[1.1] tracking-[-0.02em]"
           >
             Satu tempat<br />semua
             <span class="relative z-10">
               <span
-                class="relative inline-block"
+                class="relative inline-block min-w-[150px] sm:min-w-[200px] md:min-w-[260px] lg:min-w-[290px] text-left"
                 :style="{
                   transition: 'opacity 0.35s ease, transform 0.35s ease',
                   opacity: wordVisible ? 1 : 0,
@@ -217,7 +217,7 @@ onUnmounted(() => {
                 }}</span>
               </span> </span
             ><br /><span class="text-slate-300">di Indonesia.</span>
-          </div>
+          </h1>
 
           <p
             class="text-sm sm:text-base lg:text-lg text-slate-500 leading-relaxed max-w-lg font-medium"
@@ -434,11 +434,11 @@ onUnmounted(() => {
                   >{{ getEventTag(ev).text }}</span
                 >
               </div>
-              <div
+              <h3
                 class="relative text-lg font-extrabold text-slate-900 leading-tight mb-4 line-clamp-2"
               >
                 {{ ev.title }}
-              </div>
+              </h3>
               <div class="relative flex flex-col gap-2 mb-5">
                 <div class="flex items-center gap-2 text-slate-500 text-sm">
                   <MapPin :size="14" class="shrink-0" /><span
@@ -610,11 +610,11 @@ onUnmounted(() => {
                   >{{ getEventTag(ev).text }}</span
                 >
               </div>
-              <p
+              <h3
                 class="relative text-sm font-extrabold text-slate-900 leading-tight mb-2 line-clamp-2"
               >
                 {{ ev.title }}
-              </p>
+              </h3>
               <div
                 class="relative flex items-center gap-3 text-xs text-slate-400 mb-3"
               >

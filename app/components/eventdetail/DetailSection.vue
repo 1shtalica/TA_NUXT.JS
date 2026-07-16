@@ -101,11 +101,11 @@ const ticketTypeBadge = computed(() => {
 
         <div class="flex items-start gap-3 py-3 md:py-4">
           <div class="mt-1 h-9 w-1 bg-primary rounded-full shrink-0"></div>
-          <div
+          <h1
             class="text-3xl md:text-4xl font-bold text-slate-950 leading-[1.12] tracking-normal"
           >
             {{ event.title }}
-          </div>
+          </h1>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
@@ -239,7 +239,10 @@ const ticketTypeBadge = computed(() => {
               <div class="shrink-0">
                 <NuxtLink to="#" class="hover:opacity-80 transition-opacity">
                   <Avatar class="h-12 w-12 ring-2 ring-white shadow-sm">
-                    <AvatarImage v-if="event.organizer.profile_image_url" :src="event.organizer.profile_image_url" />
+                    <AvatarImage
+                      v-if="event.organizer.profile_image_url"
+                      :src="event.organizer.profile_image_url"
+                    />
                     <AvatarFallback>{{
                       event.organizer.name.substring(0, 2).toUpperCase()
                     }}</AvatarFallback>
@@ -279,11 +282,11 @@ const ticketTypeBadge = computed(() => {
         <div class="pt-2 md:pt-3">
           <div class="flex items-center gap-2 mb-4">
             <div class="h-7 w-1 bg-primary rounded-full"></div>
-            <div
+            <h4
               class="text-xl md:text-2xl font-bold text-slate-950 leading-tight"
             >
               Tentang Event
-            </div>
+            </h4>
           </div>
           <TipTapViewer :content="event.description?.content || ''" />
         </div>
@@ -294,11 +297,11 @@ const ticketTypeBadge = computed(() => {
         >
           <div class="flex items-center gap-2 mb-4">
             <div class="h-7 w-1 bg-primary rounded-full"></div>
-            <div
+            <h4
               class="text-xl md:text-2xl font-bold text-slate-950 leading-tight"
             >
               Rundown Acara
-            </div>
+            </h4>
           </div>
 
           <div class="flex flex-col gap-4">
@@ -321,11 +324,11 @@ const ticketTypeBadge = computed(() => {
               <div
                 :class="`flex flex-col w-full ${item.location || item.description ? 'gap-2' : 'justify-center'}`"
               >
-                <div
+                <h5
                   class="font-semibold text-slate-950 text-base md:text-lg leading-tight group-hover:text-primary transition-colors"
                 >
                   {{ item.title }}
-                </div>
+                </h5>
 
                 <div
                   v-if="item.location"

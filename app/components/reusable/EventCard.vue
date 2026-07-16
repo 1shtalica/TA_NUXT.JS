@@ -138,12 +138,12 @@ const year = isValidDate
               class="text-xs font-semibold text-indigo-500 tracking-wide line-clamp-1"
               >{{ category }}</span
             >
-            <div
+            <h3
               class="font-bold text-base leading-snug text-slate-900 line-clamp-2"
               :title="title"
             >
               {{ title }}
-            </div>
+            </h3>
             <div
               class="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5"
             >
