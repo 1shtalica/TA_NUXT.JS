@@ -53,6 +53,7 @@ const loadMore = async () => {
     const result = await EventService.getEventsClient({
       cursor: nextCursor.value,
       limit: props.limit,
+      type: props.typeFilter,
       q: props.searchQuery,
       category: props.categoryFilter,
       province: props.provinceFilter,
@@ -70,6 +71,7 @@ const loadMore = async () => {
       try {
         const result = await EventService.getEventsClient({
           limit: props.limit,
+          type: props.typeFilter,
           q: props.searchQuery,
           category: props.categoryFilter,
           province: props.provinceFilter,
