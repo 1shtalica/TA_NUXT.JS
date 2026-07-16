@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ArrowRight, CalendarX } from "@lucide/vue";
+import { EventService } from "~/services/event-service";
 
 const {
   data: events,
   pending,
   error,
-} = useFetch<any>("/api/proxy/events?limit=8");
+} = await useAsyncData("upcoming-events", () =>
+  EventService.getEvents($fetch, { limit: 8 }),
+);
 </script>
 
 <template>

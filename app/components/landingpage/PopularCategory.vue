@@ -25,9 +25,6 @@ import {
   Tag,
 } from "@lucide/vue";
 import { cn } from "~/lib/utils";
-import {
-  APPROVED_EVENT_CATEGORIES,
-} from "~/constants/event-categories";
 
 const CATEGORY_PRESENTATION: Record<
   string,
@@ -194,22 +191,19 @@ const buildCategoryCards = (categories: string[]) =>
   getVisibleCategories(categories).map((name) => ({
     value: name,
     name: getCategoryLabel(name),
-    href: `/events?category=${encodeURIComponent(name)}`,
+    href: isOtherCategory(name) ? "/events" : `/events?category=${encodeURIComponent(name)}`,
     ...getCategoryPresentation(name),
   }));
 
-const { data: categoriesData } = await useAsyncData<string[]>(
-  'event-categories',
-  () => EventService.getEventCategories($fetch),
-  { default: () => [...APPROVED_EVENT_CATEGORIES] }
-);
-
-const categoryNames = computed<string[]>(() =>
-  categoriesData.value && categoriesData.value.length > 0
-    ? categoriesData.value
-    : [...APPROVED_EVENT_CATEGORIES]
-);
+const categoryNames = ref<string[]>([]);
+const isLoading = ref(true);
 const categories = computed(() => buildCategoryCards(categoryNames.value));
+
+onMounted(async () => {
+  const fetchedCategories = await EventService.getEventCategories($fetch);
+  categoryNames.value = fetchedCategories;
+  isLoading.value = false;
+});
 </script>
 
 <template>
@@ -239,7 +233,7 @@ const categories = computed(() => buildCategoryCards(categoryNames.value));
             class="mb-2 inline-flex items-center gap-2 rounded-2xl bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-500 shadow-sm ring-1 ring-slate-200"
           >
             <Sparkles :size="13" class="text-primary" />
-            {{ categories.length }} kategori tersedia
+            {{ isLoading ? "Memuat kategori" : `${categories.length} kategori tersedia` }}
           </div>
           <h2 class="text-xl font-bold text-accent md:text-3xl">
             Kategori Populer
@@ -260,7 +254,23 @@ const categories = computed(() => buildCategoryCards(categoryNames.value));
         </Button>
       </div>
 
-      <div class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-3.5">
+      <div
+        v-if="isLoading"
+        class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-3.5"
+      >
+        <Skeleton
+          v-for="index in MAX_VISIBLE_CATEGORIES"
+          :key="index"
+          :class="
+            cn(
+              'min-h-30 rounded-xl md:min-h-32',
+              index === 1 && 'md:col-span-2 md:row-span-2 md:min-h-68',
+            )
+          "
+        />
+      </div>
+
+      <div v-else class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-3.5">
         <NuxtLink
           v-for="(category, index) in categories"
           :key="category.value"
