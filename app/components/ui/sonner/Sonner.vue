@@ -6,7 +6,6 @@ import {
   InfoIcon,
   Loader2Icon,
   TriangleAlertIcon,
-  XIcon,
 } from "@lucide/vue";
 import { Toaster as Sonner } from "vue-sonner";
 import { cn } from "~/lib/utils";
@@ -69,6 +68,5 @@ const props = defineProps<ToasterProps>();
       ><div>
         <Loader2Icon class="size-4 animate-spin text-muted-foreground" /></div
     ></template>
-    <template #close-icon><XIcon class="size-4" /></template>
   </Sonner>
 </template>

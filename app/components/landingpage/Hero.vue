@@ -74,7 +74,7 @@ const formatEventDate = (dateStr: string) => {
   if (!dateStr) return "-";
   const date = new Date(dateStr);
   if (isNaN(date.getTime())) return "-";
-  return date.toLocaleDateString("id-ID", { day: "numeric", month: "short" });
+  return date.toLocaleDateString("id-ID", { day: "numeric", month: "short", timeZone: "UTC" });
 };
 
 const getEventTag = (ev: any) => {
